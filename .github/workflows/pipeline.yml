@@ -1,0 +1,24 @@
+name: pipeline
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build_linter_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependecies
+        run: npm install --no-audit --no-fund --no-optional
+      - name: Run build
+        run: npm run build
+      - name: Run lint
+        run: npm run lint
+      - name: Run Test
+        run: npm run test
