@@ -5,6 +5,7 @@ import {
   JOBTYPECULTURE,
   JOBTYPEINCLUSIVE,
   JOBTYPELOCATION,
+  JOBTYPESENIORITY,
   JOBTYPETIME,
 } from '../../constants/enums/jobtype';
 
@@ -15,6 +16,12 @@ export class JobEntity extends BaseEntity {
 
   @Column()
   about: string;
+
+  @Column({
+    type: 'enum',
+    enum: JOBTYPESENIORITY,
+  })
+  seniority: JOBTYPESENIORITY;
 
   @Column({
     type: 'enum',

@@ -28,8 +28,14 @@ export class UserEntity extends BaseEntity {
   socialMedia: string;
 
   @Column()
-  profile: string;
+  about: string;
+
+  @Column({ default: true })
+  isPublic: boolean;
+
+  @Column({ default: false })
+  minority: boolean;
 
   @Column()
-  minority: string;
+  minorityDetail: string;
 }
