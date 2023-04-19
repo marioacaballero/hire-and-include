@@ -55,4 +55,16 @@ export class JobEntity extends BaseEntity {
     enum: JOBTYPECULTURE,
   })
   culture: JOBTYPECULTURE;
+
+  @Column()
+  requirements: Array<string>;
+
+  @Column()
+  tasks: Array<string>;
+
+  @Column()
+  benefits: Array<string>;
+
+  @Column()
+  work_schedule: string;
 }
