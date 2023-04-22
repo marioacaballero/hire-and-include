@@ -17,10 +17,10 @@ export class UserEntity extends BaseEntity {
   password: string;
 
   @Column()
-  name: string;
+  firstName: string;
 
   @Column()
-  lastname: string;
+  lastName: string;
 
   @Column()
   birthdate: Date;
