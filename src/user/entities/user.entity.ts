@@ -1,4 +1,4 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
 import {
   USER_GENDER,
@@ -7,6 +7,9 @@ import {
   USER_PURPOSES,
 } from '../../constants/enums/user';
 import { LEVELS } from '../../constants/enums/levels';
+import { LanguageEntity } from '../../language/entities/language.entity';
+import { SkillEntity } from '../../skill/entities/skill.entity';
+import { EducationEntity } from '../../education/entities/education.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
@@ -60,4 +63,16 @@ export class UserEntity extends BaseEntity {
 
   @Column({ type: 'enum', enum: LEVELS })
   limitation_level: LEVELS;
+
+  // Relationships
+
+  //One user to many entities
+  @OneToMany(() => LanguageEntity, (language) => language.user)
+  languages: LanguageEntity[];
+
+  @OneToMany(() => SkillEntity, (skill) => skill.user)
+  skills: SkillEntity[];
+
+  @OneToMany(() => EducationEntity, (education) => education.user)
+  educations: EducationEntity[];
 }

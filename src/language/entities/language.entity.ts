@@ -1,6 +1,7 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
 import { LEVELS } from '../../constants/enums/levels';
+import { UserEntity } from '../../user/entities/user.entity';
 
 @Entity({ name: 'language' })
 export class LanguageEntity extends BaseEntity {
@@ -12,4 +13,7 @@ export class LanguageEntity extends BaseEntity {
     enum: LEVELS,
   })
   level: LEVELS;
+
+  @ManyToOne(() => UserEntity, (user) => user.languages)
+  user: UserEntity;
 }
