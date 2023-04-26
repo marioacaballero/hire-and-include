@@ -14,7 +14,7 @@ export class EducationEntity extends BaseEntity {
   @Column()
   diploma: string;
 
-  @Column({ default: 0 })
+  @Column({ default: undefined })
   graduation_year: number;
 
   @Column({
