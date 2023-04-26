@@ -10,6 +10,7 @@ import { LEVELS } from '../../constants/enums/levels';
 import { LanguageEntity } from '../../language/entities/language.entity';
 import { SkillEntity } from '../../skill/entities/skill.entity';
 import { EducationEntity } from '../../education/entities/education.entity';
+import { UserExperienceEntity } from '../../user-experiencie/entities/user-experience.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
@@ -75,4 +76,7 @@ export class UserEntity extends BaseEntity {
 
   @OneToMany(() => EducationEntity, (education) => education.user)
   educations: EducationEntity[];
+
+  @OneToMany(() => UserExperienceEntity, (experience) => experience.user)
+  experiencies: UserExperienceEntity[];
 }
