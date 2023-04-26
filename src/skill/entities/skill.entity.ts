@@ -1,6 +1,7 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToMany } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
 import { LEVELS } from '../../constants/enums/levels';
+import { UserEntity } from '../../user/entities/user.entity';
 
 @Entity({ name: 'skills' })
 export class SkillEntity extends BaseEntity {
@@ -12,4 +13,7 @@ export class SkillEntity extends BaseEntity {
     enum: LEVELS,
   })
   level: LEVELS;
+
+  @ManyToMany(() => UserEntity, (user) => user.skills)
+  user: UserEntity;
 }
