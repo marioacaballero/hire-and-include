@@ -4,8 +4,8 @@ import { ProfileEntity } from '../user/profile/entities/profile.entity';
 import { Repository } from 'typeorm';
 // import { LoginAuthDto } from './dto/login-auth.dto';
 import { hash } from 'bcrypt';
-import { ProfileService } from 'src/user/profile/profile.service';
-import { ProfileDTO } from 'src/user/profile/dto/profile.dto';
+import { ProfileService } from '../user/profile/profile.service';
+import { ProfileDTO } from '../user/profile/dto/profile.dto';
 
 @Injectable()
 export class AuthService {
