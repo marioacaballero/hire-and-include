@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { LEVELS } from '../../constants/enums/levels';
+import { LEVELS } from '../../../../constants/enums/levels';
 
 export class LenguageDTO {
   @IsNotEmpty()

@@ -7,11 +7,14 @@ import {
   USER_PURPOSES,
 } from '../../constants/enums/user';
 import { LEVELS } from '../../constants/enums/levels';
-import { LanguageEntity } from '../../language/entities/language.entity';
-import { SkillEntity } from '../../skill/entities/skill.entity';
-import { EducationEntity } from '../../education/entities/education.entity';
-import { UserExperienceEntity } from '../../user-experiencie/entities/user-experience.entity';
+import { LanguageEntity } from '../complements/language/entities/language.entity';
+import { SkillEntity } from '../complements/skill/entities/skill.entity';
+import { EducationEntity } from '../complements/education/entities/education.entity';
+import { JobExperienceEntity } from '../complements/job-experiencie/entities/job-experience.entity';
 
+// Entidad para completar el perfil de Postulante / Independiente
+
+// Revisar y/o cambiar los enums que no van y pasarlos a relaciones
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
   @Column()
@@ -69,14 +72,14 @@ export class UserEntity extends BaseEntity {
 
   //One user to many entities
   @OneToMany(() => LanguageEntity, (language) => language.user)
-  languages: LanguageEntity[];
+  languages: LanguageEntity[]; // Esta es de muchos a muchos
 
   @OneToMany(() => SkillEntity, (skill) => skill.user)
-  skills: SkillEntity[];
+  skills: SkillEntity[]; // Esta es de muchos a muchos
 
   @OneToMany(() => EducationEntity, (education) => education.user)
   educations: EducationEntity[];
 
-  @OneToMany(() => UserExperienceEntity, (experience) => experience.user)
-  experiencies: UserExperienceEntity[];
+  @OneToMany(() => JobExperienceEntity, (experience) => experience.user)
+  experiencies: JobExperienceEntity[];
 }
