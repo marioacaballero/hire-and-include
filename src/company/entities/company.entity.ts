@@ -1,29 +1,38 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
+import { ActivityAreaEntity } from 'src/job/complements/activity-area/entities/activity-areas.entity';
 
+//Entidad para cargar el perfil de Empresa
 @Entity({ name: 'companies' })
 export class CompanyEntity extends BaseEntity {
   @Column()
-  email: string;
+  name: string; //nombre
 
   @Column()
-  password: string;
+  bussinessName: string; //razon social
 
   @Column()
-  name: string;
+  IDnumber: number; //CUIL/CUIT
 
   @Column()
-  bussinessName: string;
+  address: string; //domicilio
 
   @Column()
-  address: string;
+  phone: number; //telefono
 
   @Column()
-  phone: number;
+  web: string; //sitio web
 
   @Column()
-  web: string;
+  socialMedia: string; //RRSS
 
   @Column()
-  socialMedia: string;
+  cityAndCountry: string; //localidad, provincia, pais
+
+  @Column({ default: true })
+  isONG: boolean; //para identificar si es ONG
+
+  //Relationships
+  @ManyToOne(() => ActivityAreaEntity, (area) => area.company)
+  activityArea: ActivityAreaEntity; //area de actividad
 }

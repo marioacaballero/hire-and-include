@@ -1,74 +1,51 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
-import {
-  USER_GENDER,
-  USER_GENERATIONS,
-  USER_LIMITATION,
-  USER_PURPOSES,
-} from '../../constants/enums/user';
-import { LEVELS } from '../../constants/enums/levels';
+import { JOB_STATE } from '../../constants/enums/user';
 import { LanguageEntity } from '../complements/language/entities/language.entity';
 import { SkillEntity } from '../complements/skill/entities/skill.entity';
 import { EducationEntity } from '../complements/education/entities/education.entity';
 import { JobExperienceEntity } from '../complements/job-experiencie/entities/job-experience.entity';
 
 // Entidad para completar el perfil de Postulante / Independiente
-
-// Revisar y/o cambiar los enums que no van y pasarlos a relaciones
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
   @Column()
-  email: string;
+  firstName: string; //nombre
 
   @Column()
-  password: string;
+  lastName: string; //apellido
 
   @Column()
-  firstName: string;
+  birthdate: Date; //fecha de nacimiento
 
   @Column()
-  lastName: string;
+  phone: number; //telefono
 
   @Column()
-  birthdate: Date;
+  socialMedia: string; //RRSS
 
   @Column()
-  phone: number;
-
-  @Column()
-  nationality: string;
-
-  @Column()
-  socialMedia: string;
-
-  @Column()
-  about: string;
-
-  @Column({ default: true })
-  isPublic: boolean;
+  about: string; //perfil
 
   @Column({ default: false })
-  minority: boolean;
+  minority: boolean; //minoria
 
   @Column()
-  minorityDetail: string;
+  minorityDetail: string; //minoria detalle
 
-  @Column({ type: 'enum', enum: USER_PURPOSES })
-  purpose: USER_PURPOSES;
+  @Column({ default: true })
+  DBconsent: boolean; //concentimiento para estar en DB
 
-  @Column({ type: 'enum', enum: USER_GENERATIONS })
-  generation: USER_GENERATIONS;
+  @Column({ type: 'enum', enum: JOB_STATE, default: JOB_STATE.NO_TENGO })
+  jobState: JOB_STATE; //estado de postulante
 
-  @Column({ type: 'enum', enum: USER_GENDER })
-  gender: USER_GENDER;
+  @Column()
+  cityAndCountry: string; //localidad, provincia, pais
 
-  @Column({ type: 'enum', enum: USER_LIMITATION })
-  limitation: USER_LIMITATION;
+  @Column()
+  IDnumber: number; //DNI/CUIL/PASAPORTE
 
-  @Column({ type: 'enum', enum: LEVELS })
-  limitation_level: LEVELS;
-
-  // Relationships
+  // Relationships ---->>> REVISAR (APUNTADO EL 09 de MAYO)
 
   //One user to many entities
   @OneToMany(() => LanguageEntity, (language) => language.user)
