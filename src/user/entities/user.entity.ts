@@ -1,10 +1,11 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
 import { JOB_STATE } from '../../constants/enums/user';
 import { LanguageEntity } from '../complements/language/entities/language.entity';
 import { SkillEntity } from '../complements/skill/entities/skill.entity';
 import { EducationEntity } from '../complements/education/entities/education.entity';
 import { JobExperienceEntity } from '../complements/job-experiencie/entities/job-experience.entity';
+import { ProfileEntity } from '../../profile/entities/profile.entity';
 
 // Entidad para completar el perfil de Postulante / Independiente
 @Entity({ name: 'users' })
@@ -59,4 +60,8 @@ export class UserEntity extends BaseEntity {
 
   @OneToMany(() => JobExperienceEntity, (experience) => experience.user)
   experiencies: JobExperienceEntity[];
+
+  //Many users to one Profile
+  @ManyToOne(() => ProfileEntity, (profile) => profile.userProfile)
+  profile: ProfileEntity;
 }

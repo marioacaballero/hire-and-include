@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
-import { ActivityAreaEntity } from 'src/job/complements/activity-area/entities/activity-areas.entity';
+import { ActivityAreaEntity } from '../../job/complements/activity-area/entities/activity-areas.entity';
+import { ProfileEntity } from '../../profile/entities/profile.entity';
 
 //Entidad para cargar el perfil de Empresa
 @Entity({ name: 'companies' })
@@ -35,4 +36,7 @@ export class CompanyEntity extends BaseEntity {
   //Relationships
   @ManyToOne(() => ActivityAreaEntity, (area) => area.company)
   activityArea: ActivityAreaEntity; //area de actividad
+
+  @ManyToOne(() => ProfileEntity, (profile) => profile.companyProfile)
+  profile: ProfileEntity;
 }
