@@ -1,11 +1,11 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProfileEntity } from '../user/profile/entities/profile.entity';
 import { Repository } from 'typeorm';
 import { hash, compare } from 'bcrypt';
-import { ProfileService } from '../user/profile/profile.service';
-import { ProfileDTO } from '../user/profile/dto/profile.dto';
 import { JwtService } from '@nestjs/jwt';
+import { ProfileService } from '../profile/profile.service';
+import { ProfileDTO } from '../profile/dto/profile.dto';
+import { ProfileEntity } from '../profile/entities/profile.entity';
 
 @Injectable()
 export class AuthService {
@@ -39,7 +39,7 @@ export class AuthService {
 
     if (!checkPassword) throw new HttpException('Invalid Password', 403);
 
-    const payload = { id: findProfile.id, name: findProfile.firstName };
+    const payload = { id: findProfile.id };
     const token = await this.jwtService.sign(payload);
 
     const data = {
