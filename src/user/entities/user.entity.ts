@@ -15,7 +15,7 @@ import { EducationEntity } from '../complements/education/entities/education.ent
 import { JobExperienceEntity } from '../complements/job-experiencie/entities/job-experience.entity';
 import { ProfileEntity } from '../../profile/entities/profile.entity';
 import { DisabilityEntity } from '../complements/disability/entities/disability.entity';
-import { JobUserEntity } from 'src/job/entities/job-user.entity';
+import { JobUserEntity } from '../../job/entities/job-user.entity';
 
 // Entidad para completar el perfil de Postulante / Independiente
 @Entity({ name: 'users' })

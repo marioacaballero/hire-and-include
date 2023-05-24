@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
 import { ActivityAreaEntity } from '../../job/complements/activity-area/entities/activity-areas.entity';
 import { ProfileEntity } from '../../profile/entities/profile.entity';
-import { JobEntity } from 'src/job/entities/job.entity';
+import { JobEntity } from '../../job/entities/job.entity';
 
 //Entidad para cargar el perfil de Empresa
 @Entity({ name: 'companies' })

@@ -4,8 +4,8 @@ import { SeniorityEntity } from '../complements/seniority/entities/seniority.ent
 import { ChargeEntity } from '../complements/charge/entities/charge.entity';
 import { JobRelationEntity } from '../complements/job-relation/entities/job-relation.entity';
 import { JobModeEntity } from '../complements/mode/entities/mode.entitiy';
-import { DisabilityEntity } from 'src/user/complements/disability/entities/disability.entity';
-import { CompanyEntity } from 'src/company/entities/company.entity';
+import { DisabilityEntity } from '../../user/complements/disability/entities/disability.entity';
+import { CompanyEntity } from '../../company/entities/company.entity';
 import { JobUserEntity } from './job-user.entity';
 
 //Entidad para cargar las ofertas de trabajo

@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { JobEntity } from '../../../../job/entities/job.entity';
 import { BaseEntity } from '../../../../config/base.entity';
-import { UserEntity } from 'src/user/entities/user.entity';
+import { UserEntity } from '../../../../user/entities/user.entity';
 
 //Entidad para cargar las discapacidades: Como Motriz, Comunicacion, Vision, etc
 @Entity({ name: 'disability' })
