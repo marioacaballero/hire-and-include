@@ -7,6 +7,13 @@ import { ModeModule } from './complements/mode/mode.module';
 import { CultureModule } from './complements/culture/culture.module';
 
 @Module({
-  imports: [SeniorityModule, ActivityAreaModule, ChargeModule, JobRelationModule, ModeModule, CultureModule],
+  imports: [
+    SeniorityModule,
+    ActivityAreaModule,
+    ChargeModule,
+    JobRelationModule,
+    ModeModule,
+    CultureModule,
+  ],
 })
 export class JobModule {}
