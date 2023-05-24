@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
 import { UserEntity } from '../../user/entities/user.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
@@ -26,9 +26,9 @@ export class ProfileEntity extends BaseEntity {
   @ManyToOne(() => EarUsEntity, (ear) => ear.profile)
   earUs: EarUsEntity; //relacion con como nos conociste
 
-  @OneToMany(() => UserEntity, (user) => user.profile)
-  userProfile: UserEntity[]; //relacion con postulante
+  @OneToOne(() => UserEntity, (user) => user.profile)
+  userProfile: UserEntity; //relacion con postulante
 
-  @OneToMany(() => CompanyEntity, (company) => company.profile)
-  companyProfile: CompanyEntity[]; //relacion con empresa
+  @OneToOne(() => CompanyEntity, (company) => company.profile)
+  companyProfile: CompanyEntity; //relacion con empresa
 }
