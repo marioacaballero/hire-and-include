@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToMany, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../../../config/base.entity';
 import { UserEntity } from '../../../entities/user.entity';
 import { KnowledgeLevelEntity } from '../../knowledge-level/entities/knowledge-level.entity';
@@ -13,6 +13,6 @@ export class LanguageEntity extends BaseEntity {
   level: KnowledgeLevelEntity; //Nivel de estudios
 
   // Usuario
-  @ManyToOne(() => UserEntity, (user) => user.languages)
+  @ManyToMany(() => UserEntity, (user) => user.languages)
   user: UserEntity;
 }
