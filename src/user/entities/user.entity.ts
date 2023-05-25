@@ -16,6 +16,8 @@ import { JobExperienceEntity } from '../complements/job-experiencie/entities/job
 import { ProfileEntity } from '../../profile/entities/profile.entity';
 import { DisabilityEntity } from '../complements/disability/entities/disability.entity';
 import { JobUserEntity } from '../../job/entities/job-user.entity';
+import { GenreEntity } from '../complements/genre/entities/genre.entity';
+import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
 
 // Entidad para completar el perfil de Postulante / Independiente
 @Entity({ name: 'users' })
@@ -76,6 +78,12 @@ export class UserEntity extends BaseEntity {
 
   @OneToOne(() => ProfileEntity, (profile) => profile.userProfile)
   profile: ProfileEntity; //relacion con el perfil de logeo
+
+  @ManyToOne(() => PurposeEntity, (purpose) => purpose.user)
+  purpose: PurposeEntity; //proposito
+
+  @ManyToOne(() => GenreEntity, (genre) => genre.user)
+  genre: GenreEntity; //genero
 
   @ManyToOne(() => DisabilityEntity, (disability) => disability.user)
   disability: DisabilityEntity; //discapacidad
