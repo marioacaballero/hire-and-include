@@ -1,22 +1,27 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { LEVELS } from '../../../../constants/enums/levels';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { KnowledgeLevelEntity } from '../../knowledge-level/entities/knowledge-level.entity';
+import { UserEntity } from '../../../../user/entities/user.entity';
 
 export class LenguageDTO {
   @IsNotEmpty()
   @IsString()
   name: string;
 
-  @IsNotEmpty()
-  @IsEnum(LEVELS)
-  level: LEVELS;
+  @IsOptional()
+  level: KnowledgeLevelEntity;
+
+  @IsOptional()
+  user: UserEntity;
 }
 
 export class LenguageUpdateDTO {
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   name: string;
 
   @IsOptional()
-  @IsEnum(LEVELS)
-  level: LEVELS;
+  level: KnowledgeLevelEntity;
+
+  @IsOptional()
+  user: UserEntity;
 }

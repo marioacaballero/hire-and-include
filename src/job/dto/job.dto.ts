@@ -1,117 +1,158 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import {
-  JOBTYPECONTRACT,
-  JOBTYPECULTURE,
-  JOBTYPEINCLUSIVE,
-  JOBTYPELOCATION,
-  JOBTYPESENIORITY,
-  JOBTYPETIME,
-} from '../../constants/enums/jobtype';
+  IsBoolean,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
+import { SeniorityEntity } from '../complements/seniority/entities/seniority.entity';
+import { ChargeEntity } from '../complements/charge/entities/charge.entity';
+import { JobRelationEntity } from '../complements/job-relation/entities/job-relation.entity';
+import { JobModeEntity } from '../complements/mode/entities/mode.entitiy';
+import { DisabilityEntity } from '../../user/complements/disability/entities/disability.entity';
+import { CompanyEntity } from '../../company/entities/company.entity';
+import { JobUserEntity } from '../entities/job-user.entity';
 
 export class jobDTO {
   @IsNotEmpty()
   @IsString()
+  @MaxLength(20)
   name: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
+  @MaxLength(1000)
   about: string;
 
-  @IsNotEmpty()
-  @IsEnum(JOBTYPESENIORITY)
-  seniority: JOBTYPESENIORITY;
-
-  @IsNotEmpty()
-  @IsEnum(JOBTYPETIME)
-  type: JOBTYPETIME;
-
-  @IsNotEmpty()
-  @IsEnum(JOBTYPELOCATION)
-  location: JOBTYPELOCATION;
-
   @IsOptional()
   @IsString()
+  @MaxLength(100)
   salary: string;
 
   @IsNotEmpty()
-  @IsEnum(JOBTYPECONTRACT)
-  contract: JOBTYPECONTRACT;
-
-  @IsNotEmpty()
-  @IsEnum(JOBTYPEINCLUSIVE)
-  inclusive: JOBTYPEINCLUSIVE;
-
-  @IsNotEmpty()
-  @IsEnum(JOBTYPECULTURE)
-  culture: JOBTYPECULTURE;
+  @IsString()
+  requirements: string[];
 
   @IsNotEmpty()
   @IsString()
-  requirements: string;
+  tasks: string[];
 
   @IsNotEmpty()
   @IsString()
-  tasks: string;
+  inclusionProgram: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  benefits: string;
+  benefits: string[];
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   work_schedule: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(100)
+  city: string;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  minority: boolean;
+
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(60)
+  minorityDetail: string;
+
+  @IsNotEmpty()
+  seniority: SeniorityEntity;
+
+  @IsNotEmpty()
+  type: ChargeEntity;
+
+  @IsNotEmpty()
+  jobRelation: JobRelationEntity;
+
+  @IsNotEmpty()
+  mode: JobModeEntity;
+
+  @IsOptional()
+  disability: DisabilityEntity;
+
+  @IsNotEmpty()
+  company: CompanyEntity;
+
+  @IsOptional()
+  jobUser: JobUserEntity[];
 }
 
 export class jobUpdateDTO {
   @IsOptional()
   @IsString()
+  @MaxLength(20)
   name: string;
 
   @IsOptional()
   @IsString()
+  @MaxLength(1000)
   about: string;
 
   @IsOptional()
-  @IsEnum(JOBTYPESENIORITY)
-  seniority: JOBTYPESENIORITY;
-
-  @IsOptional()
-  @IsEnum(JOBTYPETIME)
-  type: JOBTYPETIME;
-
-  @IsOptional()
-  @IsEnum(JOBTYPELOCATION)
-  location: JOBTYPELOCATION;
-
-  @IsOptional()
   @IsString()
+  @MaxLength(100)
   salary: string;
 
   @IsOptional()
-  @IsEnum(JOBTYPECONTRACT)
-  contract: JOBTYPECONTRACT;
-
-  @IsOptional()
-  @IsEnum(JOBTYPEINCLUSIVE)
-  inclusive: JOBTYPEINCLUSIVE;
-
-  @IsOptional()
-  @IsEnum(JOBTYPECULTURE)
-  culture: JOBTYPECULTURE;
+  @IsString()
+  requirements: string[];
 
   @IsOptional()
   @IsString()
-  requirements: string;
+  tasks: string[];
 
   @IsOptional()
   @IsString()
-  tasks: string;
+  inclusionProgram: string;
 
   @IsOptional()
   @IsString()
-  benefits: string;
+  benefits: string[];
 
   @IsOptional()
   @IsString()
   work_schedule: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  city: string;
+
+  @IsOptional()
+  @IsBoolean()
+  minority: boolean;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(60)
+  minorityDetail: string;
+
+  @IsOptional()
+  seniority: SeniorityEntity;
+
+  @IsOptional()
+  type: ChargeEntity;
+
+  @IsOptional()
+  jobRelation: JobRelationEntity;
+
+  @IsOptional()
+  mode: JobModeEntity;
+
+  @IsOptional()
+  disability: DisabilityEntity;
+
+  @IsOptional()
+  company: CompanyEntity;
+
+  @IsOptional()
+  jobUser: JobUserEntity[];
 }

@@ -1,133 +1,148 @@
 import {
   IsBoolean,
   IsDate,
-  IsEmail,
   IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
+  MaxLength,
 } from 'class-validator';
-import {
-  USER_GENDER,
-  USER_GENERATIONS,
-  USER_LIMITATION,
-  USER_PURPOSES,
-} from '../../constants/enums/user';
-import { LEVELS } from '../../constants/enums/levels';
+import { JOB_STATE } from '../../constants/enums/user';
+import { LanguageEntity } from '../complements/language/entities/language.entity';
+import { SkillEntity } from '../complements/skill/entities/skill.entity';
+import { EducationEntity } from '../complements/education/entities/education.entity';
+import { JobExperienceEntity } from '../complements/job-experiencie/entities/job-experience.entity';
+import { ProfileEntity } from '../../profile/entities/profile.entity';
+import { DisabilityEntity } from '../complements/disability/entities/disability.entity';
+import { JobUserEntity } from '../../job/entities/job-user.entity';
+import { GenreEntity } from '../complements/genre/entities/genre.entity';
+import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
 
 export class UserDTO {
   @IsNotEmpty()
   @IsString()
-  @IsEmail()
-  email: string;
-
-  @IsNotEmpty()
-  @IsString()
-  passwors: string;
-
-  @IsNotEmpty()
-  @IsString()
+  @MaxLength(20)
   firstName: string;
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(20)
   lastName: string;
 
   @IsOptional()
+  @IsString()
+  photo: string;
+
+  @IsNotEmpty()
   @IsDate()
+  @MaxLength(10)
   birthdate: Date;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsNumber()
+  @MaxLength(20)
   phone: number;
 
   @IsOptional()
   @IsString()
-  nationality: string;
-
-  @IsOptional()
-  @IsString()
+  @MaxLength(100)
   socialMedia: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
+  @MaxLength(1000)
   about: string;
 
-  @IsOptional()
-  @IsBoolean()
-  isPublic: boolean;
-
-  @IsOptional()
+  @IsNotEmpty()
   @IsBoolean()
   minority: boolean;
 
   @IsOptional()
   @IsString()
+  @MaxLength(60)
   minorityDetail: string;
 
-  @IsOptional()
-  @IsEnum(USER_PURPOSES)
-  purpose: USER_PURPOSES;
+  @IsNotEmpty()
+  @IsBoolean()
+  DBconsent: boolean;
+
+  @IsNotEmpty()
+  @IsEnum(JOB_STATE)
+  jobState: JOB_STATE;
+
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(100)
+  cityAndCountry: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @MaxLength(11)
+  IDnumber: number;
 
   @IsOptional()
-  @IsEnum(USER_GENERATIONS)
-  generation: USER_GENERATIONS;
+  languages: LanguageEntity[];
 
   @IsOptional()
-  @IsEnum(USER_GENDER)
-  gender: USER_GENDER;
+  skills: SkillEntity[];
 
   @IsOptional()
-  @IsEnum(USER_LIMITATION)
-  limitation: USER_LIMITATION;
+  educations: EducationEntity[];
 
   @IsOptional()
-  @IsEnum(LEVELS)
-  limitation_level: LEVELS;
+  experiencies: JobExperienceEntity[];
+
+  @IsOptional()
+  profile: ProfileEntity;
+
+  @IsOptional()
+  urpose: PurposeEntity;
+
+  @IsOptional()
+  genre: GenreEntity;
+
+  @IsOptional()
+  disability: DisabilityEntity;
+
+  @IsOptional()
+  jobUser: JobUserEntity[];
 }
 
 export class UserUpdateDTO {
   @IsOptional()
   @IsString()
-  @IsEmail()
-  email: string;
-
-  @IsOptional()
-  @IsString()
-  passwors: string;
-
-  @IsOptional()
-  @IsString()
+  @MaxLength(20)
   firstName: string;
 
   @IsOptional()
   @IsString()
+  @MaxLength(20)
   lastName: string;
 
   @IsOptional()
+  @IsString()
+  photo: string;
+
+  @IsOptional()
   @IsDate()
+  @MaxLength(10)
   birthdate: Date;
 
   @IsOptional()
   @IsNumber()
+  @MaxLength(20)
   phone: number;
 
   @IsOptional()
   @IsString()
-  nationality: string;
-
-  @IsOptional()
-  @IsString()
+  @MaxLength(100)
   socialMedia: string;
 
   @IsOptional()
   @IsString()
+  @MaxLength(1000)
   about: string;
-
-  @IsOptional()
-  @IsBoolean()
-  isPublic: boolean;
 
   @IsOptional()
   @IsBoolean()
@@ -135,25 +150,51 @@ export class UserUpdateDTO {
 
   @IsOptional()
   @IsString()
+  @MaxLength(60)
   minorityDetail: string;
 
   @IsOptional()
-  @IsEnum(USER_PURPOSES)
-  purpose: USER_PURPOSES;
+  @IsBoolean()
+  DBconsent: boolean;
 
   @IsOptional()
-  @IsEnum(USER_GENERATIONS)
-  generation: USER_GENERATIONS;
+  @IsEnum(JOB_STATE)
+  jobState: JOB_STATE;
 
   @IsOptional()
-  @IsEnum(USER_GENDER)
-  gender: USER_GENDER;
+  @IsString()
+  @MaxLength(100)
+  cityAndCountry: string;
 
   @IsOptional()
-  @IsEnum(USER_LIMITATION)
-  limitation: USER_LIMITATION;
+  @IsNumber()
+  @MaxLength(11)
+  IDnumber: number;
 
   @IsOptional()
-  @IsEnum(LEVELS)
-  limitation_level: LEVELS;
+  languages: LanguageEntity[];
+
+  @IsOptional()
+  skills: SkillEntity[];
+
+  @IsOptional()
+  educations: EducationEntity[];
+
+  @IsOptional()
+  experiencies: JobExperienceEntity[];
+
+  @IsOptional()
+  profile: ProfileEntity;
+
+  @IsOptional()
+  urpose: PurposeEntity;
+
+  @IsOptional()
+  genre: GenreEntity;
+
+  @IsOptional()
+  disability: DisabilityEntity;
+
+  @IsOptional()
+  jobUser: JobUserEntity[];
 }

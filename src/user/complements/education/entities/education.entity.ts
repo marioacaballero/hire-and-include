@@ -8,23 +8,23 @@ import { EducationLevelEntity } from './education-level.entity';
 @Entity({ name: 'education' })
 export class EducationEntity extends BaseEntity {
   @Column()
-  institution: string;
+  institution: string; //centro educativo
 
   @Column()
-  diploma: string;
+  diploma: string; //titulo
 
   @Column({ default: undefined })
-  graduation_year: number;
+  graduation_year: number; //anio de graduacion
 
   @Column({
     type: 'enum',
     enum: EDUCATIONSTATE,
   })
-  state: EDUCATIONSTATE;
+  state: EDUCATIONSTATE; //estado de estudio
 
   @ManyToOne(() => EducationLevelEntity, (educLevel) => educLevel.education)
-  educationDegree: EducationLevelEntity;
+  educationDegree: EducationLevelEntity; //nivel de estudio
 
   @ManyToOne(() => UserEntity, (user) => user.educations)
-  user: UserEntity;
+  user: UserEntity; //usuario
 }

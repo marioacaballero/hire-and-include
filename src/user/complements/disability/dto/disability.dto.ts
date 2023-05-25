@@ -1,27 +1,27 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { KnowledgeLevelEntity } from '../../knowledge-level/entities/knowledge-level.entity';
+import { JobEntity } from '../../../../job/entities/job.entity';
 import { UserEntity } from '../../../../user/entities/user.entity';
 
-export class SkillDTO {
+export class DisabilityDTO {
   @IsNotEmpty()
   @IsString()
   name: string;
 
   @IsOptional()
-  level: KnowledgeLevelEntity;
+  user: UserEntity[];
 
   @IsOptional()
-  user: UserEntity;
+  job: JobEntity[];
 }
 
-export class SkillUpdateDTO {
-  @IsNotEmpty()
+export class DisabilityUpdateDTO {
+  @IsOptional()
   @IsString()
   name: string;
 
   @IsOptional()
-  level: KnowledgeLevelEntity;
+  user: UserEntity[];
 
   @IsOptional()
-  user: UserEntity;
+  job: JobEntity[];
 }

@@ -11,6 +11,9 @@ export class CompanyEntity extends BaseEntity {
   name: string; //nombre
 
   @Column()
+  logo: string; //logo de la empresa
+
+  @Column()
   bussinessName: string; //razon social
 
   @Column()

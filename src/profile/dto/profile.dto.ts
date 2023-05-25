@@ -1,58 +1,68 @@
 import {
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsOptional,
   IsString,
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { ACCESLEVEL, PROFILETYPE } from '../../constants/enums/profile';
+import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
+import { CompanyEntity } from '../../company/entities/company.entity';
 
 export class ProfileDTO {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
+  @MaxLength(50)
   email: string;
 
   @IsNotEmpty()
   @IsString()
   @MinLength(4)
-  @MaxLength(12)
+  @MaxLength(8)
   password: string;
 
-  @IsNotEmpty()
-  @IsString()
-  userName: string;
+  @IsOptional()
+  @IsEnum(PROFILETYPE)
+  profileType: PROFILETYPE;
+
+  @IsOptional()
+  @IsEnum(ACCESLEVEL)
+  accesLevel: ACCESLEVEL;
 
   @IsNotEmpty()
-  @IsString()
-  firstName: string;
+  earUs: EarUsEntity;
 
   @IsNotEmpty()
-  @IsString()
-  lastName: string;
+  companyProfile: CompanyEntity;
 }
 
 export class ProfileUpdateDTO {
   @IsOptional()
   @IsString()
   @IsEmail()
+  @MaxLength(50)
   email: string;
 
   @IsOptional()
   @IsString()
   @MinLength(4)
-  @MaxLength(12)
-  passwors: string;
+  @MaxLength(8)
+  password: string;
 
   @IsOptional()
-  @IsString()
-  userName: string;
+  @IsEnum(PROFILETYPE)
+  profileType: PROFILETYPE;
 
   @IsOptional()
-  @IsString()
-  firstName: string;
+  @IsEnum(ACCESLEVEL)
+  accesLevel: ACCESLEVEL;
 
   @IsOptional()
-  @IsString()
-  lastName: string;
+  earUs: EarUsEntity;
+
+  @IsOptional()
+  companyProfile: CompanyEntity;
 }
