@@ -12,7 +12,7 @@ import { JOB_STATE } from '../../constants/enums/user';
 import { LanguageEntity } from '../complements/language/entities/language.entity';
 import { SkillEntity } from '../complements/skill/entities/skill.entity';
 import { EducationEntity } from '../complements/education/entities/education.entity';
-import { JobExperienceEntity } from '../complements/job-experiencie/entities/job-experience.entity';
+import { JobExperienceEntity } from '../complements/job-experience/entities/job-experience.entity';
 import { ProfileEntity } from '../../profile/entities/profile.entity';
 import { DisabilityEntity } from '../complements/disability/entities/disability.entity';
 import { JobUserEntity } from '../../job/entities/job-user.entity';

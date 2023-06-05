@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { GenreModule } from './complements/genre/genre.module';
-import { DisabilityModule } from './complements/disability/disability.module';
-import { PurposeModule } from './complements/purpose/purpose.module';
-import { KnowledgeLevelModule } from './complements/knowledge-level/knowledge-level.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserService } from './services/user.service';
+import { UserEntity } from './entities/user.entity';
 
 @Module({
-  imports: [GenreModule, DisabilityModule, PurposeModule, KnowledgeLevelModule],
+  imports: [TypeOrmModule.forFeature([UserEntity])],
+  controllers: [],
+  providers: [UserService],
 })
 export class UserModule {}

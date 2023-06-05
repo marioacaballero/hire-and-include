@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../../../config/base.entity';
-import { JobExperienceEntity } from '../../../../user/complements/job-experiencie/entities/job-experience.entity';
+import { JobExperienceEntity } from '../../../../user/complements/job-experience/entities/job-experience.entity';
 import { JobEntity } from '../../../../job/entities/job.entity';
 
 // Entidad para cargar la jerarquia: Como Junior, Senior, etc
