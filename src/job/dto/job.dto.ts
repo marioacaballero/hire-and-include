@@ -13,7 +13,7 @@ import { DisabilityEntity } from '../../user/complements/disability/entities/dis
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { JobUserEntity } from '../entities/job-user.entity';
 
-export class jobDTO {
+export class JobDTO {
   @IsNotEmpty()
   @IsString()
   @MaxLength(20)
@@ -85,7 +85,7 @@ export class jobDTO {
   jobUser: JobUserEntity[];
 }
 
-export class jobUpdateDTO {
+export class JobUpdateDTO {
   @IsOptional()
   @IsString()
   @MaxLength(20)
