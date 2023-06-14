@@ -7,6 +7,7 @@ import { JobModeEntity } from '../complements/mode/entities/mode.entitiy';
 import { DisabilityEntity } from '../../user/complements/disability/entities/disability.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { JobUserEntity } from './job-user.entity';
+import { CultureEntity } from '../complements/culture/entities/culture.entity';
 
 //Entidad para cargar las ofertas de trabajo
 @Entity({ name: 'jobs' })
@@ -49,6 +50,9 @@ export class JobEntity extends BaseEntity {
 
   @ManyToOne(() => ChargeEntity, (charge) => charge.job)
   type: ChargeEntity; //carga horaria
+
+  @ManyToOne(() => CultureEntity, (culture) => culture.job)
+  culture: CultureEntity; //carga horaria
 
   @ManyToOne(() => JobRelationEntity, (jobrelation) => jobrelation.job)
   jobRelation: JobRelationEntity; //tipo de contratación

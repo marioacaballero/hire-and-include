@@ -5,6 +5,7 @@ import { ChargeModule } from './complements/charge/charge.module';
 import { JobRelationModule } from './complements/job-relation/job-relation.module';
 import { ModeModule } from './complements/mode/mode.module';
 import { CultureModule } from './complements/culture/culture.module';
+import { JobService } from './services/job.service';
 
 @Module({
   imports: [
@@ -15,5 +16,6 @@ import { CultureModule } from './complements/culture/culture.module';
     ModeModule,
     CultureModule,
   ],
+  providers: [JobService],
 })
 export class JobModule {}
