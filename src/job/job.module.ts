@@ -6,6 +6,7 @@ import { JobRelationModule } from './complements/job-relation/job-relation.modul
 import { ModeModule } from './complements/mode/mode.module';
 import { CultureModule } from './complements/culture/culture.module';
 import { JobService } from './services/job.service';
+import { JobController } from './controllers/job.controller';
 
 @Module({
   imports: [
@@ -17,5 +18,6 @@ import { JobService } from './services/job.service';
     CultureModule,
   ],
   providers: [JobService],
+  controllers: [JobController],
 })
 export class JobModule {}
