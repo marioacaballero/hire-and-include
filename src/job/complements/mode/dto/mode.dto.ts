@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { JobEntity } from '../../../../job/entities/job.entity';
+import { JobEntity } from '../../../entities/job.entity';
 
 export class ModeDTO {
   @IsNotEmpty()

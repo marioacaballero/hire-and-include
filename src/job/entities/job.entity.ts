@@ -3,7 +3,7 @@ import { BaseEntity } from '../../config/base.entity';
 import { SeniorityEntity } from '../complements/seniority/entities/seniority.entity';
 import { ChargeEntity } from '../complements/charge/entities/charge.entity';
 import { JobRelationEntity } from '../complements/job-relation/entities/job-relation.entity';
-import { JobModeEntity } from '../complements/mode/entities/mode.entitiy';
+import { ModeEntity } from '../complements/mode/entities/mode.entity';
 import { DisabilityEntity } from '../../user/complements/disability/entities/disability.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { JobUserEntity } from './job-user.entity';
@@ -22,16 +22,16 @@ export class JobEntity extends BaseEntity {
   salary: string; //rango salarial
 
   @Column()
-  requirements: Array<string>; //requisitos
+  requirements: string; //requisitos
 
   @Column()
-  tasks: Array<string>; //tareas
+  tasks: string; //tareas
 
   @Column()
   inclusionProgram: string; //programa de inclusion
 
   @Column()
-  benefits: Array<string>; //beneficios
+  benefits: string; //beneficios
 
   @Column()
   work_schedule: string; //horario
@@ -57,8 +57,8 @@ export class JobEntity extends BaseEntity {
   @ManyToOne(() => JobRelationEntity, (jobrelation) => jobrelation.job)
   jobRelation: JobRelationEntity; //tipo de contratación
 
-  @ManyToOne(() => JobModeEntity, (jobmode) => jobmode.job)
-  mode: JobModeEntity; //modalidad
+  @ManyToOne(() => ModeEntity, (jobmode) => jobmode.job)
+  jobMode: ModeEntity; //modalidad
 
   @ManyToOne(() => DisabilityEntity, (disability) => disability.job)
   disability: DisabilityEntity; //discapacidad o limitacion
