@@ -8,7 +8,7 @@ import {
 import { SeniorityEntity } from '../complements/seniority/entities/seniority.entity';
 import { ChargeEntity } from '../complements/charge/entities/charge.entity';
 import { JobRelationEntity } from '../complements/job-relation/entities/job-relation.entity';
-import { JobModeEntity } from '../complements/mode/entities/mode.entitiy';
+import { ModeEntity } from '../complements/mode/entities/mode.entity';
 import { DisabilityEntity } from '../../user/complements/disability/entities/disability.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { JobUserEntity } from '../entities/job-user.entity';
@@ -31,11 +31,11 @@ export class JobDTO {
 
   @IsNotEmpty()
   @IsString()
-  requirements: string[];
+  requirements: string;
 
   @IsNotEmpty()
   @IsString()
-  tasks: string[];
+  tasks: string;
 
   @IsNotEmpty()
   @IsString()
@@ -43,7 +43,7 @@ export class JobDTO {
 
   @IsNotEmpty()
   @IsString()
-  benefits: string[];
+  benefits: string;
 
   @IsNotEmpty()
   @IsString()
@@ -73,7 +73,7 @@ export class JobDTO {
   jobRelation: JobRelationEntity;
 
   @IsNotEmpty()
-  mode: JobModeEntity;
+  jobMode: ModeEntity;
 
   @IsOptional()
   disability: DisabilityEntity;
@@ -103,11 +103,11 @@ export class JobUpdateDTO {
 
   @IsOptional()
   @IsString()
-  requirements: string[];
+  requirements: string;
 
   @IsOptional()
   @IsString()
-  tasks: string[];
+  tasks: string;
 
   @IsOptional()
   @IsString()
@@ -115,7 +115,7 @@ export class JobUpdateDTO {
 
   @IsOptional()
   @IsString()
-  benefits: string[];
+  benefits: string;
 
   @IsOptional()
   @IsString()
@@ -145,7 +145,7 @@ export class JobUpdateDTO {
   jobRelation: JobRelationEntity;
 
   @IsOptional()
-  mode: JobModeEntity;
+  jobMode: ModeEntity;
 
   @IsOptional()
   disability: DisabilityEntity;

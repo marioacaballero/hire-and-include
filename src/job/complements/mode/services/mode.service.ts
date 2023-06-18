@@ -1,18 +1,18 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
-import { JobModeEntity } from '../entities/mode.entitiy';
+import { ModeEntity } from '../entities/mode.entity';
 import { ErrorManager } from '../../../../helpers/error.manager';
 import { ModeDTO } from '../dto/mode.dto';
 import { ModeUpdateDTO } from '../dto/mode.dto';
 
 export class ModeService {
   constructor(
-    @InjectRepository(JobModeEntity)
-    private readonly jobmodeRepository: Repository<JobModeEntity>,
+    @InjectRepository(ModeEntity)
+    private readonly jobmodeRepository: Repository<ModeEntity>,
   ) {}
 
   //crear una nueva modalidad
-  public async createOne(body: ModeDTO): Promise<JobModeEntity> {
+  public async createOne(body: ModeDTO): Promise<ModeEntity> {
     try {
       const mode = await this.jobmodeRepository.save(body);
       if (!mode) {
@@ -28,7 +28,7 @@ export class ModeService {
   }
 
   //Buscar todas las modalidads de la db
-  public async findAll(): Promise<JobModeEntity[]> {
+  public async findAll(): Promise<ModeEntity[]> {
     try {
       const allmodes = await this.jobmodeRepository.find();
       if (!allmodes.length) {
@@ -44,7 +44,7 @@ export class ModeService {
   }
 
   //Busca una modalidad en particular
-  public async findOne(id: number): Promise<JobModeEntity> {
+  public async findOne(id: number): Promise<ModeEntity> {
     try {
       const mode = await this.jobmodeRepository
         .createQueryBuilder('mode')
@@ -65,10 +65,7 @@ export class ModeService {
   }
 
   //Modificar una modalidad en particular
-  public async updateOne(
-    id: number,
-    body: ModeUpdateDTO,
-  ): Promise<JobModeEntity> {
+  public async updateOne(id: number, body: ModeUpdateDTO): Promise<ModeEntity> {
     try {
       const mode: UpdateResult = await this.jobmodeRepository.update(id, body);
       if (!mode.affected) {
@@ -84,7 +81,7 @@ export class ModeService {
   }
 
   //Borrar una modalidad (soft)
-  public async deleteOne(id: number): Promise<JobModeEntity> {
+  public async deleteOne(id: number): Promise<ModeEntity> {
     try {
       const mode: UpdateResult = await this.jobmodeRepository.update(id, {
         isActive: false,
