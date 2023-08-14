@@ -9,6 +9,6 @@ import { EarUsModule } from './complements/ear-us/ear-us.module';
   imports: [TypeOrmModule.forFeature([ProfileEntity]), EarUsModule],
   controllers: [ProfileController],
   providers: [ProfileService],
-  exports: [ProfileService],
+  exports: [ProfileService, TypeOrmModule],
 })
 export class ProfileModule {}
