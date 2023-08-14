@@ -1,8 +1,9 @@
 import { Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProfileEntity } from './entities/profile.entity';
-import { ProfileDTO, ProfileUpdateDTO } from './dto/profile.dto';
-import { ErrorManager } from '../helpers/error.manager';
+import { ProfileEntity } from '../entities/profile.entity';
+import { ProfileUpdateDTO } from '../dto/profile.dto';
+import { ErrorManager } from '../../helpers/error.manager';
+import { AuthDTO } from '../../auth/dto/auth.dto';
 
 export class ProfileService {
   constructor(
@@ -11,16 +12,22 @@ export class ProfileService {
   ) {}
 
   //Crea un usuario
-  public async createProfile(body: ProfileDTO): Promise<any> {
+  public async createProfile({
+    email,
+    password,
+  }: AuthDTO): Promise<ProfileEntity> {
     try {
-      const profile: ProfileEntity = await this.profileRepository.save(body);
-      if (!profile) {
+      const profile: ProfileEntity = await this.profileRepository
+        .createQueryBuilder('profile')
+        .where({ email })
+        .getOne();
+      if (profile) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
-          message: 'The profile is not created',
+          message: 'The email is already registered in the database',
         });
       }
-      return profile;
+      return await this.profileRepository.save({ email, password });
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }

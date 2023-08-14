@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfileEntity } from './entities/profile.entity';
-import { ProfileController } from './profile.controller';
-import { ProfileService } from './profile.service';
+import { ProfileController } from './controllers/profile.controller';
+import { ProfileService } from './services/profile.service';
 import { EarUsModule } from './complements/ear-us/ear-us.module';
 
 @Module({

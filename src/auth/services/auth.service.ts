@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
 import { JwtPayload, sign } from 'jsonwebtoken';
 import { config } from 'dotenv';
-import { ProfileService } from '../profile/profile.service';
-import { ProfileDTO } from '../profile/dto/profile.dto';
-import { ErrorManager } from '../helpers/error.manager';
+import { ProfileService } from '../../profile/services/profile.service';
+import { ProfileDTO } from '../../profile/dto/profile.dto';
+import { ErrorManager } from '../../helpers/error.manager';
 
 config();
 
@@ -16,10 +16,10 @@ export class AuthService {
   public async register(userObject: ProfileDTO) {
     try {
       //Hash password
-      const { password } = userObject;
-      const passToHash = await hash(password, +process.env.HASH_SALT);
-      //Replace password with hashPassword
-      userObject = { ...userObject, password: passToHash };
+      userObject.password = await hash(
+        userObject.password,
+        +process.env.HASH_SALT,
+      );
       return this.profileService.createProfile(userObject);
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
@@ -67,7 +67,7 @@ export class AuthService {
           secret: process.env.JWT_SECRET,
           expires: '22h',
         }),
-        findProfile,
+        profile: findProfile,
       };
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
