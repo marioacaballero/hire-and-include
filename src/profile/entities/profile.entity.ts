@@ -1,4 +1,5 @@
 import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { BaseEntity } from '../../config/base.entity';
 import { UserEntity } from '../../user/entities/user.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
@@ -13,6 +14,7 @@ export class ProfileEntity extends BaseEntity {
   @Column({ unique: true })
   email: string; //correo
 
+  @Exclude()
   @Column()
   password: string; //contraseña
 

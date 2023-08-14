@@ -40,9 +40,9 @@ export class UserDTO {
   birthdate: Date;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   @MaxLength(20)
-  phone: number;
+  phone: string;
 
   @IsOptional()
   @IsString()
@@ -130,9 +130,9 @@ export class UserUpdateDTO {
   birthdate: Date;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
   @MaxLength(20)
-  phone: number;
+  phone: string;
 
   @IsOptional()
   @IsString()

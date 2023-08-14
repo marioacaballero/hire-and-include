@@ -6,11 +6,10 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class LoginAuthDto {
+export class AuthDTO {
   @IsNotEmpty()
-  @IsString()
   @IsEmail()
-  userName: string;
+  email: string;
 
   @IsNotEmpty()
   @IsString()

@@ -28,16 +28,16 @@ export class UserEntity extends BaseEntity {
   @Column()
   lastName: string; //apellido
 
-  @Column()
+  @Column({ default: '' })
   photo: string; //foto de perfil
 
   @Column()
   birthdate: Date; //fecha de nacimiento
 
-  @Column()
-  phone: number; //telefono
+  @Column({ default: '' })
+  phone: string; //telefono
 
-  @Column()
+  @Column({ default: '' })
   socialMedia: string; //RRSS
 
   @Column()
@@ -46,7 +46,7 @@ export class UserEntity extends BaseEntity {
   @Column({ default: false })
   minority: boolean; //minoria
 
-  @Column()
+  @Column({ default: '' })
   minorityDetail: string; //minoria detalle
 
   @Column({ default: true })
@@ -55,7 +55,7 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'enum', enum: JOB_STATE, default: JOB_STATE.NO_TENGO })
   jobState: JOB_STATE; //estado de postulante
 
-  @Column()
+  @Column({ default: '' })
   cityAndCountry: string; //localidad, provincia, pais
 
   @Column()

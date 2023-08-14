@@ -37,7 +37,7 @@ export class ProfileService {
       if (!profile) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: 'The profile not found',
+          message: `The profile not found with email: ${email}`,
         });
       }
 
