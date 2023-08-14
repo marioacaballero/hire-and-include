@@ -5,6 +5,9 @@
 # environment variables
 .env
 
+# migrations
+/src/migrations
+
 # Logs
 logs
 *.log
