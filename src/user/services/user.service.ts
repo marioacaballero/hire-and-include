@@ -3,16 +3,20 @@ import { Repository, UpdateResult } from 'typeorm';
 import { UserEntity } from '../entities/user.entity';
 import { ErrorManager } from '../../helpers/error.manager';
 import { UserDTO, UserUpdateDTO } from '../dto/user.dto';
+import { ProfileService } from '../../profile/services/profile.service';
 
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    private readonly profileService: ProfileService,
   ) {}
 
   //crear un nuevo usuario
   public async createOne(body: UserDTO): Promise<UserEntity> {
     try {
+      const profile = await this.profileService.findOne(body.profile.id);
+      body.profile = profile;
       const user = await this.userRepository.save(body);
       if (!user) {
         throw new ErrorManager({
@@ -48,6 +52,7 @@ export class UserService {
       const user = await this.userRepository
         .createQueryBuilder('user')
         .where({ id })
+        .leftJoinAndSelect('user.profile', 'profile')
         .getOne();
 
       if (!user) {

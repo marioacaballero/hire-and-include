@@ -76,6 +76,8 @@ export class ProfileService {
       const profile = await this.profileRepository
         .createQueryBuilder('profile')
         .where({ id })
+        .leftJoinAndSelect('profile.userProfile', 'userProfile')
+        .leftJoinAndSelect('profile.companyProfile', 'companyProfile')
         .getOne();
 
       if (!profile) {

@@ -93,7 +93,7 @@ export class UserDTO {
   @IsOptional()
   experiencies: JobExperienceEntity[];
 
-  @IsOptional()
+  @IsNotEmpty()
   profile: ProfileEntity;
 
   @IsOptional()
