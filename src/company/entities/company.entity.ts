@@ -10,25 +10,25 @@ export class CompanyEntity extends BaseEntity {
   @Column()
   name: string; //nombre
 
-  @Column()
+  @Column({ default: '' })
   logo: string; //logo de la empresa
 
   @Column()
   bussinessName: string; //razon social
 
   @Column()
-  IDnumber: number; //CUIL/CUIT
+  IDnumber: string; //CUIL/CUIT
 
   @Column()
   address: string; //domicilio
 
   @Column()
-  phone: number; //telefono
+  phone: string; //telefono
 
-  @Column()
+  @Column({ default: '' })
   web: string; //sitio web
 
-  @Column()
+  @Column({ default: '' })
   socialMedia: string; //RRSS
 
   @Column()

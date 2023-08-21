@@ -3,16 +3,20 @@ import { Repository, UpdateResult } from 'typeorm';
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { ErrorManager } from '../../helpers/error.manager';
 import { CompanyDTO, CompanyUpdateDTO } from '../../company/dto/company.dto';
+import { ProfileService } from '../../profile/services/profile.service';
 
 export class CompanyService {
   constructor(
     @InjectRepository(CompanyEntity)
     private readonly companyRepository: Repository<CompanyEntity>,
+    private readonly profileService: ProfileService,
   ) {}
 
   //crear una nueva empresa
   public async createOne(body: CompanyDTO): Promise<CompanyEntity> {
     try {
+      const profile = await this.profileService.findOne(body.profile.id);
+      body.profile = profile;
       const company = await this.companyRepository.save(body);
       if (!company) {
         throw new ErrorManager({
