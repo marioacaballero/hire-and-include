@@ -16,7 +16,24 @@ export class UserService {
   public async createOne(body: UserDTO): Promise<UserEntity> {
     try {
       const profile = await this.profileService.findOne(body.profile.id);
+      if (profile.userProfile) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The profile has an user',
+        });
+      }
       body.profile = profile;
+      const dniExist = await this.userRepository.find({
+        where: { IDnumber: body.IDnumber },
+      });
+
+      if (dniExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The IDnumber is on database',
+        });
+      }
+
       const user = await this.userRepository.save(body);
       if (!user) {
         throw new ErrorManager({
@@ -24,7 +41,7 @@ export class UserService {
           message: 'The user is not created',
         });
       }
-      return user;
+      return this.findOne(user.id);
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }

@@ -22,16 +22,16 @@ import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
 // Entidad para completar el perfil de Postulante / Independiente
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
-  @Column()
+  @Column({ default: 'hire' })
   firstName: string; //nombre
 
-  @Column()
+  @Column({ default: 'include' })
   lastName: string; //apellido
 
   @Column({ default: '' })
   photo: string; //foto de perfil
 
-  @Column()
+  @Column({ default: '20230101' })
   birthdate: Date; //fecha de nacimiento
 
   @Column({ default: '' })
@@ -40,7 +40,7 @@ export class UserEntity extends BaseEntity {
   @Column({ default: '' })
   socialMedia: string; //RRSS
 
-  @Column()
+  @Column({ default: 'welcome to hire and include' })
   about: string; //perfil
 
   @Column({ default: false })
@@ -55,10 +55,10 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'enum', enum: JOB_STATE, default: JOB_STATE.NO_TENGO })
   jobState: JOB_STATE; //estado de postulante
 
-  @Column({ default: '' })
+  @Column({ default: 'parana, entre rios, argentina' })
   cityAndCountry: string; //localidad, provincia, pais
 
-  @Column()
+  @Column({ unique: true })
   IDnumber: number; //DNI/CUIL/PASAPORTE
 
   // Relationships

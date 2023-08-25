@@ -3,8 +3,8 @@ import { hash, compare } from 'bcrypt';
 import { JwtPayload, sign } from 'jsonwebtoken';
 import { config } from 'dotenv';
 import { ProfileService } from '../../profile/services/profile.service';
-import { ProfileDTO } from '../../profile/dto/profile.dto';
 import { ErrorManager } from '../../helpers/error.manager';
+import { AuthDTO } from '../dto/auth.dto';
 
 config();
 
@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private readonly profileService: ProfileService) {}
 
   //Profile Register
-  public async register(userObject: ProfileDTO) {
+  public async register(userObject: AuthDTO) {
     try {
       //Hash password
       userObject.password = await hash(

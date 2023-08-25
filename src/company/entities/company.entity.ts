@@ -7,31 +7,31 @@ import { JobEntity } from '../../job/entities/job.entity';
 //Entidad para cargar el perfil de Empresa
 @Entity({ name: 'companies' })
 export class CompanyEntity extends BaseEntity {
-  @Column()
+  @Column({ default: 'hire and include' })
   name: string; //nombre
 
   @Column({ default: '' })
   logo: string; //logo de la empresa
 
-  @Column()
+  @Column({ default: 'hire and include' })
   bussinessName: string; //razon social
 
-  @Column()
+  @Column({ unique: true })
   IDnumber: string; //CUIL/CUIT
 
-  @Column()
+  @Column({ default: 'buenos aires, argentina' })
   address: string; //domicilio
 
-  @Column()
+  @Column({ default: '' })
   phone: string; //telefono
 
-  @Column({ default: '' })
+  @Column({ default: 'www.hireandinclude.com' })
   web: string; //sitio web
 
   @Column({ default: '' })
   socialMedia: string; //RRSS
 
-  @Column()
+  @Column({ default: 'parana, entre rios, argentina' })
   cityAndCountry: string; //localidad, provincia, pais
 
   @Column({ default: true })

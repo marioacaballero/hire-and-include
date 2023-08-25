@@ -1,6 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { ActivityAreaEntity } from '../entities/activity-areas.entity';
 import { Repository, UpdateResult } from 'typeorm';
+import { ActivityAreaEntity } from '../entities/activity-areas.entity';
 import { ErrorManager } from '../../../../helpers/error.manager';
 import {
   ActivityAreaDTO,
@@ -16,6 +16,16 @@ export class ActivityAreaService {
   //crear una nueva area
   public async createOne(body: ActivityAreaDTO): Promise<ActivityAreaEntity> {
     try {
+      const activityExist = await this.activityRepository.find({
+        where: { name: body.name },
+      });
+      if (activityExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The activity area exist on database',
+        });
+      }
+
       const activity = await this.activityRepository.save(body);
       if (!activity) {
         throw new ErrorManager({
