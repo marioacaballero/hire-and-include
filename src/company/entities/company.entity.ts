@@ -34,7 +34,7 @@ export class CompanyEntity extends BaseEntity {
   @Column({ default: 'parana, entre rios, argentina' })
   cityAndCountry: string; //localidad, provincia, pais
 
-  @Column({ default: true })
+  @Column({ default: false })
   isONG: boolean; //para identificar si es ONG
 
   //Relationships
