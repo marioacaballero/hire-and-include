@@ -8,5 +8,6 @@ import { ActivityAreaEntity } from './entities/activity-areas.entity';
   imports: [TypeOrmModule.forFeature([ActivityAreaEntity])],
   providers: [ActivityAreaService],
   controllers: [ActivityAreaController],
+  exports: [ActivityAreaService, TypeOrmModule],
 })
 export class ActivityAreaModule {}

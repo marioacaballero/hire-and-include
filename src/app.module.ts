@@ -10,13 +10,13 @@ import { LanguageModule } from './user/complements/language/language.module';
 import { EducationModule } from './user/complements/education/education.module';
 import { JobExperiencieModule } from './user/complements/job-experience/job-experiencie.module';
 import { AuthModule } from './auth/auth.module';
-import { ProfileController } from './profile/profile.controller';
+import { ProfileController } from './profile/controllers/profile.controller';
 import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: '.env',
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(DataSourceConfig),

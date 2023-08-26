@@ -25,7 +25,7 @@ export class CompanyController {
   }
 
   @Get('id/:id')
-  public async getOneById(@Param(':id') id: string) {
+  public async getOneById(@Param('id') id: string) {
     return await this.companyService.findOne(Number(id));
   }
 
