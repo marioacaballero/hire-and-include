@@ -3,10 +3,10 @@ import {
   IsDate,
   IsEnum,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
+  MinLength,
 } from 'class-validator';
 import { JOB_STATE } from '../../constants/enums/user';
 import { LanguageEntity } from '../complements/language/entities/language.entity';
@@ -36,7 +36,7 @@ export class UserDTO {
 
   @IsNotEmpty()
   @IsDate()
-  @MaxLength(10)
+  // @MaxLength(9)
   birthdate: Date;
 
   @IsNotEmpty()
@@ -77,9 +77,10 @@ export class UserDTO {
   cityAndCountry: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
+  @MinLength(8)
   @MaxLength(11)
-  IDnumber: number;
+  IDnumber: string;
 
   @IsOptional()
   languages: LanguageEntity[];
@@ -126,7 +127,7 @@ export class UserUpdateDTO {
 
   @IsOptional()
   @IsDate()
-  @MaxLength(10)
+  // @MaxLength(9)
   birthdate: Date;
 
   @IsOptional()
@@ -167,9 +168,10 @@ export class UserUpdateDTO {
   cityAndCountry: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
+  @MinLength(8)
   @MaxLength(11)
-  IDnumber: number;
+  IDnumber: string;
 
   @IsOptional()
   languages: LanguageEntity[];

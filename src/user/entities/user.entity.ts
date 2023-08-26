@@ -59,7 +59,7 @@ export class UserEntity extends BaseEntity {
   cityAndCountry: string; //localidad, provincia, pais
 
   @Column({ unique: true })
-  IDnumber: number; //DNI/CUIL/PASAPORTE
+  IDnumber: string; //DNI/CUIL/PASAPORTE
 
   // Relationships
   @ManyToMany(() => LanguageEntity, (language) => language.user)
