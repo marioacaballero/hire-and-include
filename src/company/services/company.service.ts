@@ -1,18 +1,51 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
-import { CompanyEntity } from '../../company/entities/company.entity';
-import { ErrorManager } from '../../helpers/error.manager';
 import { CompanyDTO, CompanyUpdateDTO } from '../../company/dto/company.dto';
+import { ErrorManager } from '../../helpers/error.manager';
+import { CompanyEntity } from '../../company/entities/company.entity';
+import { ProfileService } from '../../profile/services/profile.service';
+import { ActivityAreaService } from '../../job/complements/activity-area/services/activity-area.service';
 
 export class CompanyService {
   constructor(
     @InjectRepository(CompanyEntity)
     private readonly companyRepository: Repository<CompanyEntity>,
+    private readonly profileService: ProfileService,
+    private readonly activityAreaService: ActivityAreaService,
   ) {}
 
   //crear una nueva empresa
   public async createOne(body: CompanyDTO): Promise<CompanyEntity> {
     try {
+      const profile = await this.profileService.findOne(body.profile.id);
+      if (profile.companyProfile) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The profile has an company',
+        });
+      }
+      body.profile = profile;
+
+      const cuilExist = await this.companyRepository.find({
+        where: { IDnumber: body.IDnumber },
+      });
+      if (cuilExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The IDnumber is on database',
+        });
+      }
+
+      const activityExist = await this.activityAreaService.findOne(
+        body.activityArea.id,
+      );
+      if (!activityExist) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The Activity Area not exist on database',
+        });
+      }
+
       const company = await this.companyRepository.save(body);
       if (!company) {
         throw new ErrorManager({
@@ -20,7 +53,8 @@ export class CompanyService {
           message: 'The company is not created',
         });
       }
-      return company;
+
+      return this.findOne(company.id);
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }

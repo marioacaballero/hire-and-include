@@ -5,7 +5,7 @@ import { CompanyEntity } from '../../../../company/entities/company.entity';
 //Entidad para cargar los campos de Areas de Actividad: Como Ingenieria, Legales, Turismo, etc
 @Entity({ name: 'activity_area' })
 export class ActivityAreaEntity extends BaseEntity {
-  @Column()
+  @Column({ unique: true })
   name: string; //nombre del area
 
   //Relationships

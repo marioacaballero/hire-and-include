@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { BaseEntity } from '../../config/base.entity';
 import { UserEntity } from '../../user/entities/user.entity';
@@ -29,8 +29,10 @@ export class ProfileEntity extends BaseEntity {
   earUs: EarUsEntity; //relacion con como nos conociste
 
   @OneToOne(() => UserEntity, (user) => user.profile)
+  @JoinColumn()
   userProfile: UserEntity; //relacion con postulante
 
   @OneToOne(() => CompanyEntity, (company) => company.profile)
+  @JoinColumn()
   companyProfile: CompanyEntity; //relacion con empresa
 }

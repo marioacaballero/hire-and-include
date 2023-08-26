@@ -3,16 +3,37 @@ import { Repository, UpdateResult } from 'typeorm';
 import { UserEntity } from '../entities/user.entity';
 import { ErrorManager } from '../../helpers/error.manager';
 import { UserDTO, UserUpdateDTO } from '../dto/user.dto';
+import { ProfileService } from '../../profile/services/profile.service';
 
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    private readonly profileService: ProfileService,
   ) {}
 
   //crear un nuevo usuario
   public async createOne(body: UserDTO): Promise<UserEntity> {
     try {
+      const profile = await this.profileService.findOne(body.profile.id);
+      if (profile.userProfile) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The profile has an user',
+        });
+      }
+      body.profile = profile;
+      const dniExist = await this.userRepository.find({
+        where: { IDnumber: body.IDnumber },
+      });
+
+      if (dniExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The IDnumber is on database',
+        });
+      }
+
       const user = await this.userRepository.save(body);
       if (!user) {
         throw new ErrorManager({
@@ -20,7 +41,7 @@ export class UserService {
           message: 'The user is not created',
         });
       }
-      return user;
+      return this.findOne(user.id);
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
@@ -48,6 +69,7 @@ export class UserService {
       const user = await this.userRepository
         .createQueryBuilder('user')
         .where({ id })
+        .leftJoinAndSelect('user.profile', 'profile')
         .getOne();
 
       if (!user) {

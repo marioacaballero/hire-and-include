@@ -1,7 +1,6 @@
 import {
   IsBoolean,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
@@ -26,9 +25,9 @@ export class CompanyDTO {
   bussinessName: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   @MaxLength(11)
-  IDnumber: number;
+  IDnumber: string;
 
   @IsNotEmpty()
   @IsString()
@@ -36,9 +35,9 @@ export class CompanyDTO {
   address: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   @MaxLength(20)
-  phone: number;
+  phone: string;
 
   @IsOptional()
   @IsString()
@@ -55,7 +54,7 @@ export class CompanyDTO {
   @MaxLength(100)
   cityAndCountry: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsBoolean()
   isONG: boolean;
 
@@ -85,9 +84,9 @@ export class CompanyUpdateDTO {
   bussinessName: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
   @MaxLength(11)
-  IDnumber: number;
+  IDnumber: string;
 
   @IsOptional()
   @IsString()
@@ -95,9 +94,9 @@ export class CompanyUpdateDTO {
   address: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
   @MaxLength(20)
-  phone: number;
+  phone: string;
 
   @IsOptional()
   @IsString()
