@@ -36,7 +36,6 @@ export class UserDTO {
 
   @IsNotEmpty()
   @IsDate()
-  // @MaxLength(9)
   birthdate: Date;
 
   @IsNotEmpty()
@@ -127,7 +126,6 @@ export class UserUpdateDTO {
 
   @IsOptional()
   @IsDate()
-  // @MaxLength(9)
   birthdate: Date;
 
   @IsOptional()
@@ -185,7 +183,7 @@ export class UserUpdateDTO {
   @IsOptional()
   experiencies: JobExperienceEntity[];
 
-  @IsOptional()
+  @IsNotEmpty()
   profile: ProfileEntity;
 
   @IsOptional()

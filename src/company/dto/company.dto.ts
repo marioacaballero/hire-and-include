@@ -120,7 +120,7 @@ export class CompanyUpdateDTO {
   @IsOptional()
   activityArea: ActivityAreaEntity;
 
-  @IsOptional()
+  @IsNotEmpty()
   profile: ProfileEntity;
 
   @IsOptional()
