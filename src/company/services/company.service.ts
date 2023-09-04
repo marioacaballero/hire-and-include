@@ -75,6 +75,7 @@ export class CompanyService {
         .createQueryBuilder('company')
         .where({ id })
         .leftJoinAndSelect('company.profile', 'profile')
+        .leftJoinAndSelect('company.job', 'job')
         .getOne();
 
       if (!company) {
