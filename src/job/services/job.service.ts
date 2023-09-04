@@ -3,16 +3,35 @@ import { JobEntity } from '../entities/job.entity';
 import { Repository, UpdateResult } from 'typeorm';
 import { ErrorManager } from '../../helpers/error.manager';
 import { JobDTO, JobUpdateDTO } from '../dto/job.dto';
+import { SeniorityService } from '../complements/seniority/services/seniority.service';
+import { ChargeService } from '../complements/charge/services/charge.service';
+import { CultureService } from '../complements/culture/services/culture.service';
+import { JobRelationService } from '../complements/job-relation/services/job-relation.service';
+import { ModeService } from '../complements/mode/services/mode.service';
+import { CompanyService } from '../../company/services/company.service';
 
 export class JobService {
   constructor(
     @InjectRepository(JobEntity)
     private readonly jobRepository: Repository<JobEntity>,
+    private readonly companyService: CompanyService,
+    private readonly seniorityService: SeniorityService,
+    private readonly chargeService: ChargeService,
+    private readonly cultureService: CultureService,
+    private readonly jobrelationService: JobRelationService,
+    private readonly jobmodeService: ModeService,
   ) {}
 
   //crear una nueva oferta de trabajo
   public async createOne(body: JobDTO): Promise<JobEntity> {
     try {
+      await this.companyService.findOne(body.company.id);
+      await this.seniorityService.findOne(body.seniority.id);
+      await this.chargeService.findOne(body.type.id);
+      await this.cultureService.findOne(body.culture.id);
+      await this.jobrelationService.findOne(body.jobRelation.id);
+      await this.jobmodeService.findOne(body.jobMode.id);
+
       const job = await this.jobRepository.save(body);
       if (!job) {
         throw new ErrorManager({
@@ -48,6 +67,14 @@ export class JobService {
       const job = await this.jobRepository
         .createQueryBuilder('job')
         .where({ id })
+        .leftJoinAndSelect('job.company', 'company')
+        .leftJoinAndSelect('job.seniority', 'seniority')
+        .leftJoinAndSelect('job.type', 'type.name')
+        .leftJoinAndSelect('job.culture', 'culture.name')
+        .leftJoinAndSelect('job.jobRelation', 'jobRelation.name')
+        .leftJoinAndSelect('job.jobMode', 'jobMode.name')
+        .leftJoinAndSelect('job.jobUser', 'jobUser')
+        .leftJoinAndSelect('jobUser.user', 'user')
         .getOne();
 
       if (!job) {

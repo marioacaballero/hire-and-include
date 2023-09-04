@@ -8,5 +8,6 @@ import { SeniorityEntity } from './entities/seniority.entity';
   imports: [TypeOrmModule.forFeature([SeniorityEntity])],
   providers: [SeniorityService],
   controllers: [SeniorityController],
+  exports: [SeniorityService, TypeOrmModule],
 })
 export class SeniorityModule {}

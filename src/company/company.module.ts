@@ -18,5 +18,6 @@ import { ActivityAreaEntity } from '../job/complements/activity-area/entities/ac
   ],
   providers: [CompanyService, ProfileService, ActivityAreaService],
   controllers: [CompanyController],
+  exports: [CompanyService, TypeOrmModule],
 })
 export class CompanyModule {}

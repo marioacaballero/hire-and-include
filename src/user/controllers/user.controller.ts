@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { UserDTO, UserUpdateDTO } from '../dto/user.dto';
+import { JobUserDTO } from 'src/job/dto/job-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -37,5 +38,10 @@ export class UserController {
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
     return await this.userService.deleteOne(Number(id));
+  }
+
+  @Post('add-to-job/:jobId')
+  public async addToJob(@Body() body: JobUserDTO, @Param('jobId') job: string) {
+    return await this.userService.applyToJob(body, Number(job));
   }
 }

@@ -8,5 +8,6 @@ import { CultureEntity } from './entities/culture.entity';
   imports: [TypeOrmModule.forFeature([CultureEntity])],
   providers: [CultureService],
   controllers: [CultureController],
+  exports: [CultureService, TypeOrmModule],
 })
 export class CultureModule {}

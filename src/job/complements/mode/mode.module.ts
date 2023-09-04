@@ -8,5 +8,6 @@ import { ModeEntity } from './entities/mode.entity';
   imports: [TypeOrmModule.forFeature([ModeEntity])],
   providers: [ModeService],
   controllers: [ModeController],
+  exports: [ModeService, TypeOrmModule],
 })
 export class ModeModule {}
