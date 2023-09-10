@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { UserDTO, UserUpdateDTO } from '../dto/user.dto';
-import { JobUserDTO } from 'src/job/dto/job-user.dto';
+import { JobUserDTO } from '../../job/dto/job-user.dto';
 
 @Controller('user')
 export class UserController {
