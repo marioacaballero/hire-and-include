@@ -14,6 +14,16 @@ export class ModeService {
   //crear una nueva modalidad
   public async createOne(body: ModeDTO): Promise<ModeEntity> {
     try {
+      const jobmodeExist = await this.jobmodeRepository.find({
+        where: { name: body.name },
+      });
+      if (jobmodeExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The job mode exist on database',
+        });
+      }
+
       const mode = await this.jobmodeRepository.save(body);
       if (!mode) {
         throw new ErrorManager({

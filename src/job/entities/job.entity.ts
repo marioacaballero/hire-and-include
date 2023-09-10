@@ -15,22 +15,22 @@ export class JobEntity extends BaseEntity {
   @Column()
   name: string; //puesto
 
-  @Column()
+  @Column('longtext')
   about: string; //objetivo
 
   @Column()
   salary: string; //rango salarial
 
-  @Column()
+  @Column('longtext')
   requirements: string; //requisitos
 
-  @Column()
+  @Column('longtext')
   tasks: string; //tareas
 
-  @Column()
+  @Column('longtext')
   inclusionProgram: string; //programa de inclusion
 
-  @Column()
+  @Column('longtext')
   benefits: string; //beneficios
 
   @Column()
@@ -52,7 +52,7 @@ export class JobEntity extends BaseEntity {
   type: ChargeEntity; //carga horaria
 
   @ManyToOne(() => CultureEntity, (culture) => culture.job)
-  culture: CultureEntity; //carga horaria
+  culture: CultureEntity; //cultura de trabajo
 
   @ManyToOne(() => JobRelationEntity, (jobrelation) => jobrelation.job)
   jobRelation: JobRelationEntity; //tipo de contratación

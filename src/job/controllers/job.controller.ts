@@ -25,7 +25,7 @@ export class JobController {
   }
 
   @Get('id/:id')
-  public async getOneById(@Param(':id') id: string) {
+  public async getOneById(@Param('id') id: string) {
     return await this.jobService.findOne(Number(id));
   }
 

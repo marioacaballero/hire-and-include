@@ -13,6 +13,16 @@ export class SeniorityService {
   //crear una nueva jerarquia
   public async createOne(body: SeniorityDTO): Promise<SeniorityEntity> {
     try {
+      const seniorityExist = await this.seniorityRepository.find({
+        where: { name: body.name },
+      });
+      if (seniorityExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The seniority exist on database',
+        });
+      }
+
       const seniority = await this.seniorityRepository.save(body);
       if (!seniority) {
         throw new ErrorManager({

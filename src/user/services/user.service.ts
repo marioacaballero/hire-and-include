@@ -4,12 +4,18 @@ import { UserEntity } from '../entities/user.entity';
 import { ErrorManager } from '../../helpers/error.manager';
 import { UserDTO, UserUpdateDTO } from '../dto/user.dto';
 import { ProfileService } from '../../profile/services/profile.service';
+import { JobService } from '../../job/services/job.service';
+import { JobUserDTO } from '../../job/dto/job-user.dto';
+import { JobUserEntity } from '../../job/entities/job-user.entity';
 
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(JobUserEntity)
+    private readonly jobUserRepository: Repository<JobUserEntity>,
     private readonly profileService: ProfileService,
+    private readonly jobService: JobService,
   ) {}
 
   //crear un nuevo usuario
@@ -70,6 +76,8 @@ export class UserService {
         .createQueryBuilder('user')
         .where({ id })
         .leftJoinAndSelect('user.profile', 'profile')
+        .leftJoinAndSelect('user.jobUser', 'jobUser')
+        .leftJoinAndSelect('jobUser.job', 'job')
         .getOne();
 
       if (!user) {
@@ -114,6 +122,26 @@ export class UserService {
         });
       }
       return await this.findOne(id);
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
+  //Postularse a un trabajo en específico
+  public async applyToJob(body: JobUserDTO, jobId: number) {
+    try {
+      const job = await this.jobService.findOne(jobId);
+      const user = await this.findOne(body.user.id);
+      const jobExist = user.jobUser.find((us) => us.job.id === job.id);
+
+      if (jobExist) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: `The user was postulated on job id: ${jobId}`,
+        });
+      }
+
+      return await this.jobUserRepository.save({ job, user });
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
