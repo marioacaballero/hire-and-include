@@ -24,7 +24,7 @@ export class ProfileDTO {
   @MaxLength(8)
   password: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsEnum(PROFILETYPE)
   profileType: PROFILETYPE;
 

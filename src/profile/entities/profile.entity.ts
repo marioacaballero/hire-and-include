@@ -3,7 +3,7 @@ import { Exclude } from 'class-transformer';
 import { BaseEntity } from '../../config/base.entity';
 import { UserEntity } from '../../user/entities/user.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
-import { ACCESLEVEL, PROFILETYPE } from '../../constants/enums/profile';
+import { ACCESLEVEL, PROFILETYPE, ROLES } from '../../constants/enums/profile';
 import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
 
 // Entidad para completar el perfil de logeo / registro
@@ -18,10 +18,13 @@ export class ProfileEntity extends BaseEntity {
   @Column()
   password: string; //contraseña
 
-  @Column({ type: 'enum', enum: PROFILETYPE, default: PROFILETYPE.INVITADO })
-  profileType: PROFILETYPE; //perfil
+  @Column({ type: 'enum', enum: ROLES, default: ROLES.BASIC })
+  rol: ROLES; //rol (admin, admin user, basico, etc)
 
-  @Column({ type: 'enum', enum: ACCESLEVEL, default: ACCESLEVEL.PUBLICO })
+  @Column({ type: 'enum', enum: PROFILETYPE, default: PROFILETYPE.APPLICANT })
+  profileType: PROFILETYPE; //tipo de usuario (postulante, empresa, ong, etc)
+
+  @Column({ type: 'enum', enum: ACCESLEVEL, default: ACCESLEVEL.PUBLIC })
   accesLevel: ACCESLEVEL; //nivel de acceso
 
   // Relationships
