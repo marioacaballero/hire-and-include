@@ -10,6 +10,7 @@ import {
 import { ACCESLEVEL, PROFILETYPE } from '../../constants/enums/profile';
 import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
+import { UserEntity } from '../../user/entities/user.entity';
 
 export class ProfileDTO {
   @IsNotEmpty()
@@ -35,8 +36,11 @@ export class ProfileDTO {
   @IsNotEmpty()
   earUs: EarUsEntity;
 
-  @IsNotEmpty()
+  @IsOptional()
   companyProfile: CompanyEntity;
+
+  @IsOptional()
+  userProfile: UserEntity;
 }
 
 export class ProfileUpdateDTO {
@@ -65,4 +69,7 @@ export class ProfileUpdateDTO {
 
   @IsOptional()
   companyProfile: CompanyEntity;
+
+  @IsOptional()
+  userProfile: UserEntity;
 }
