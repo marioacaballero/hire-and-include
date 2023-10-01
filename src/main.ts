@@ -6,7 +6,7 @@ import { CORS } from './constants/cors';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { snapshot: true });
+  const app = await NestFactory.create(AppModule);
 
   app.use(morgan('dev'));
 

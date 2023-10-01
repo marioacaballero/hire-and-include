@@ -3,6 +3,8 @@ import { BaseEntity } from '../../config/base.entity';
 import { ActivityAreaEntity } from '../../job/complements/activity-area/entities/activity-areas.entity';
 import { ProfileEntity } from '../../profile/entities/profile.entity';
 import { JobEntity } from '../../job/entities/job.entity';
+import { UserEntity } from '../../user/entities/user.entity';
+import { RecomendationEntity } from '../complements/recomendation/entities/recomendation.entity';
 
 //Entidad para cargar el perfil de Empresa
 @Entity({ name: 'companies' })
@@ -46,4 +48,13 @@ export class CompanyEntity extends BaseEntity {
 
   @OneToMany(() => JobEntity, (job) => job.company)
   job: JobEntity[]; //relacion con la oferta de trabajo
+
+  @OneToMany(() => UserEntity, (user) => user.companyRelation)
+  userRelation: UserEntity[]; //relacion con el usuario para ONG
+
+  @OneToMany(
+    () => RecomendationEntity,
+    (recomendation) => recomendation.company,
+  )
+  recomendation: RecomendationEntity[]; //relacion para recomendaciones de usuarios
 }
