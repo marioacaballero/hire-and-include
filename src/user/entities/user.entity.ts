@@ -18,6 +18,9 @@ import { DisabilityEntity } from '../complements/disability/entities/disability.
 import { JobUserEntity } from '../../job/entities/job-user.entity';
 import { GenreEntity } from '../complements/genre/entities/genre.entity';
 import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
+import { CompanyEntity } from '../../company/entities/company.entity';
+import { RecomendationEntity } from '../../company/complements/recomendation/entities/recomendation.entity';
+import { UserToUserRecomendationEntity } from '../complements/user-recomendation/entities/user-to-user-recomendation.entity';
 
 // Entidad para completar el perfil de Postulante / Independiente
 @Entity({ name: 'users' })
@@ -90,4 +93,13 @@ export class UserEntity extends BaseEntity {
 
   @OneToMany(() => JobUserEntity, (jobUser) => jobUser.user)
   jobUser: JobUserEntity[]; //relacion a la tabla intermedia para muchas ofertas de trabajo
+
+  @ManyToOne(() => CompanyEntity, (company) => company.userRelation)
+  companyRelation: CompanyEntity; // relacion directa para saber si pertenece o no a una empresa
+
+  @OneToOne(() => RecomendationEntity, (recomendation) => recomendation.user)
+  companyRecomendation: RecomendationEntity; // relacion para las recomendaciones de la empresa
+
+  @OneToMany(() => UserToUserRecomendationEntity, (recom) => recom.user)
+  userToUserRec: UserToUserRecomendationEntity[]; // relacion para las recomendaciones de usuario (table intermedia)
 }

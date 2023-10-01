@@ -7,6 +7,7 @@ import { ProfileService } from '../profile/services/profile.service';
 import { ProfileEntity } from '../profile/entities/profile.entity';
 import { ActivityAreaService } from '../job/complements/activity-area/services/activity-area.service';
 import { ActivityAreaEntity } from '../job/complements/activity-area/entities/activity-areas.entity';
+import { RecomendationModule } from './complements/recomendation/recomendation.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ActivityAreaEntity } from '../job/complements/activity-area/entities/ac
       ProfileEntity,
       ActivityAreaEntity,
     ]),
+    RecomendationModule,
   ],
   providers: [CompanyService, ProfileService, ActivityAreaService],
   controllers: [CompanyController],

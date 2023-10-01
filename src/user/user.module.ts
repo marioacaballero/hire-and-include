@@ -16,6 +16,7 @@ import { JobRelationModule } from '../job/complements/job-relation/job-relation.
 import { ModeModule } from '../job/complements/mode/mode.module';
 import { CompanyEntity } from '../company/entities/company.entity';
 import { ActivityAreaModule } from '../job/complements/activity-area/activity-area.module';
+import { UserRecomendationModule } from './complements/user-recomendation/user-recomendation.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ActivityAreaModule } from '../job/complements/activity-area/activity-ar
     CultureModule,
     ModeModule,
     ActivityAreaModule,
+    UserRecomendationModule,
   ],
   controllers: [UserController],
   providers: [UserService, ProfileService, JobService, CompanyService],

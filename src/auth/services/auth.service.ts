@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
 import { JwtPayload, sign } from 'jsonwebtoken';
-import { config } from 'dotenv';
 import { ProfileService } from '../../profile/services/profile.service';
 import { ErrorManager } from '../../helpers/error.manager';
 import { AuthDTO } from '../dto/auth.dto';
-
-config();
 
 @Injectable()
 export class AuthService {
