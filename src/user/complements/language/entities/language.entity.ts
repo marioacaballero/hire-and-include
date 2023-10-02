@@ -1,7 +1,7 @@
-import { Column, Entity, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToMany } from 'typeorm';
 import { BaseEntity } from '../../../../config/base.entity';
 import { UserEntity } from '../../../entities/user.entity';
-import { KnowledgeLevelEntity } from '../../knowledge-level/entities/knowledge-level.entity';
+import { LEVELS } from '../../../../constants/enums/levels';
 
 // Entidad para cargar los idiomas del postulante
 @Entity({ name: 'language' })
@@ -9,8 +9,8 @@ export class LanguageEntity extends BaseEntity {
   @Column()
   name: string; //Idioma
 
-  @ManyToOne(() => KnowledgeLevelEntity, (level) => level.language)
-  level: KnowledgeLevelEntity; //Nivel de estudios
+  @Column({ type: 'enum', enum: LEVELS })
+  knowledgeLevel: string; //Nivel de conocimiento
 
   // Usuario
   @ManyToMany(() => UserEntity, (user) => user.languages)
