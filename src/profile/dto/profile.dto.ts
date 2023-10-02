@@ -63,7 +63,7 @@ export class ProfileUpdateDTO {
   @IsString()
   @MaxLength(20)
   lastName: string;
-  
+
   @IsOptional()
   @IsString()
   @IsEmail()
