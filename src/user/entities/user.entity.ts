@@ -25,44 +25,32 @@ import { UserToUserRecomendationEntity } from '../complements/user-recomendation
 // Entidad para completar el perfil de Postulante / Independiente
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
-  @Column({ default: 'hire' })
-  firstName: string; //nombre
-
-  @Column({ default: 'include' })
-  lastName: string; //apellido
-
   @Column({ default: '' })
   photo: string; //foto de perfil
 
-  @Column({ default: '20230101' })
-  birthdate: Date; //fecha de nacimiento
+  @Column()
+  birthdate: Date; //fecha de nacimiento*
 
-  @Column({ default: '' })
-  phone: string; //telefono
+  @Column()
+  phone: string; //telefono*
 
   @Column({ default: '' })
   socialMedia: string; //RRSS
 
-  @Column({ default: 'welcome to hire and include' })
-  about: string; //perfil
+  @Column()
+  about: string; //perfil*
 
   @Column({ default: false })
-  minority: boolean; //minoria
-
-  @Column({ default: '' })
-  minorityDetail: string; //minoria detalle
-
-  @Column({ default: true })
   DBconsent: boolean; //concentimiento para estar en DB
 
-  @Column({ type: 'enum', enum: JOB_STATE, default: JOB_STATE.NO_TENGO })
-  jobState: JOB_STATE; //estado de postulante
+  @Column({ type: 'enum', enum: JOB_STATE })
+  jobState: JOB_STATE; //estado de postulante*
 
-  @Column({ default: 'parana, entre rios, argentina' })
-  cityAndCountry: string; //localidad, provincia, pais
+  @Column()
+  cityAndCountry: string; //localidad, provincia, pais*
 
   @Column({ unique: true })
-  IDnumber: string; //DNI/CUIL/PASAPORTE
+  IDnumber: string; //DNI/CUIL/PASAPORTE*
 
   // Relationships
   @ManyToMany(() => LanguageEntity, (language) => language.user)
@@ -89,7 +77,7 @@ export class UserEntity extends BaseEntity {
   genre: GenreEntity; //genero
 
   @ManyToOne(() => DisabilityEntity, (disability) => disability.user)
-  disability: DisabilityEntity; //discapacidad
+  disability: DisabilityEntity; //Necesidad de apoyo
 
   @OneToMany(() => JobUserEntity, (jobUser) => jobUser.user)
   jobUser: JobUserEntity[]; //relacion a la tabla intermedia para muchas ofertas de trabajo

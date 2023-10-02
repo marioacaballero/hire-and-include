@@ -15,6 +15,16 @@ import { UserEntity } from '../../user/entities/user.entity';
 export class ProfileDTO {
   @IsNotEmpty()
   @IsString()
+  @MaxLength(20)
+  firstName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(20)
+  lastName: string;
+
+  @IsNotEmpty()
+  @IsString()
   @IsEmail()
   @MaxLength(50)
   email: string;
@@ -44,6 +54,16 @@ export class ProfileDTO {
 }
 
 export class ProfileUpdateDTO {
+  @IsOptional()
+  @IsString()
+  @MaxLength(20)
+  firstName: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(20)
+  lastName: string;
+  
   @IsOptional()
   @IsString()
   @IsEmail()
