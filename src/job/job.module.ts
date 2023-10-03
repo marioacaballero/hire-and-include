@@ -13,6 +13,8 @@ import { SeniorityService } from './complements/seniority/services/seniority.ser
 import { CompanyService } from '../company/services/company.service';
 import { CompanyModule } from '../company/company.module';
 import { ProfileModule } from '../profile/profile.module';
+import { PositionAreaModule } from './complements/position-area/position-area.module';
+import { SubPositionAreaModule } from './complements/sub-position-area/sub-position-area.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { ProfileModule } from '../profile/profile.module';
     CultureModule,
     CompanyModule,
     ProfileModule,
+    PositionAreaModule,
+    SubPositionAreaModule,
   ],
   providers: [
     JobService,
