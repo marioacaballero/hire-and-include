@@ -6,14 +6,22 @@ export class PurposeDTO {
   @IsString()
   name: string;
 
+  @IsNotEmpty()
+  @IsString()
+  motivation: string;
+
   @IsOptional()
   user: UserEntity[];
 }
 
 export class PurposeUpdateDTO {
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   name: string;
+
+  @IsOptional()
+  @IsString()
+  motivation: string;
 
   @IsOptional()
   user: UserEntity[];
