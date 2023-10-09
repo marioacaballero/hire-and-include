@@ -7,6 +7,8 @@ import {
 } from 'class-validator';
 import { SeniorityEntity } from '../../../../job/complements/seniority/entities/seniority.entity';
 import { UserEntity } from '../../../entities/user.entity';
+import { PositionAreaEntity } from '../../../../job/complements/position-area/entites/position-area.entity';
+import { SubPositionAreaEntity } from '../../../../job/complements/sub-position-area/entities/sub-position-area.entity';
 
 export class JobExperienceDTO {
   @IsNotEmpty()
@@ -44,6 +46,12 @@ export class JobExperienceDTO {
 
   @IsNotEmpty()
   user: UserEntity;
+
+  @IsNotEmpty()
+  positionArea: PositionAreaEntity;
+
+  @IsNotEmpty()
+  subPositionArea: SubPositionAreaEntity;
 }
 
 export class JobExperienceUpdateDTO {
@@ -82,4 +90,10 @@ export class JobExperienceUpdateDTO {
 
   @IsNotEmpty()
   user: UserEntity;
+
+  @IsNotEmpty()
+  positionArea: PositionAreaEntity;
+
+  @IsNotEmpty()
+  subPositionArea: SubPositionAreaEntity;
 }
