@@ -21,6 +21,7 @@ import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { RecomendationEntity } from '../../company/complements/recomendation/entities/recomendation.entity';
 import { UserToUserRecomendationEntity } from '../complements/user-recomendation/entities/user-to-user-recomendation.entity';
+import { UserRecomendationEntity } from '../complements/user-recomendation/entities/user-recomendation.entity';
 
 // Entidad para completar el perfil de Postulante / Independiente
 @Entity({ name: 'users' })
@@ -90,4 +91,7 @@ export class UserEntity extends BaseEntity {
 
   @OneToMany(() => UserToUserRecomendationEntity, (recom) => recom.user)
   userToUserRec: UserToUserRecomendationEntity[]; // relacion para las recomendaciones de usuario (table intermedia)
+
+  @OneToMany(() => UserRecomendationEntity, (rec) => rec.user)
+  recomendation: UserRecomendationEntity[]; // relacion para las recomendaciones de usuario
 }

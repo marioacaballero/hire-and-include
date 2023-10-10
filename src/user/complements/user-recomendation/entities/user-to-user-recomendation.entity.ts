@@ -8,6 +8,6 @@ export class UserToUserRecomendationEntity extends BaseEntity {
   @ManyToOne(() => UserEntity, (user) => user.userToUserRec)
   user: UserEntity;
 
-  @OneToOne(() => UserRecomendationEntity, (rec) => rec.user)
+  @OneToOne(() => UserRecomendationEntity, (rec) => rec.userToUser)
   recomendation: UserRecomendationEntity;
 }

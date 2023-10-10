@@ -1,6 +1,7 @@
-import { Column, Entity, OneToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../../../config/base.entity';
 import { UserToUserRecomendationEntity } from './user-to-user-recomendation.entity';
+import { UserEntity } from '../../../../user/entities/user.entity';
 
 @Entity({ name: 'user-recomendation' })
 export class UserRecomendationEntity extends BaseEntity {
@@ -8,5 +9,8 @@ export class UserRecomendationEntity extends BaseEntity {
   description: string;
 
   @OneToOne(() => UserToUserRecomendationEntity, (rec) => rec.recomendation)
-  user: UserToUserRecomendationEntity;
+  userToUser: UserToUserRecomendationEntity;
+
+  @ManyToOne(() => UserEntity, (user) => user.recomendation)
+  user: UserEntity;
 }
