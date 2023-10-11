@@ -20,16 +20,6 @@ import { GenreEntity } from '../complements/genre/entities/genre.entity';
 import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
 
 export class UserDTO {
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(20)
-  firstName: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(20)
-  lastName: string;
-
   @IsOptional()
   @IsString()
   photo: string;
@@ -53,16 +43,7 @@ export class UserDTO {
   @MaxLength(1000)
   about: string;
 
-  @IsNotEmpty()
-  @IsBoolean()
-  minority: boolean;
-
   @IsOptional()
-  @IsString()
-  @MaxLength(60)
-  minorityDetail: string;
-
-  @IsNotEmpty()
   @IsBoolean()
   DBconsent: boolean;
 
@@ -112,16 +93,6 @@ export class UserDTO {
 export class UserUpdateDTO {
   @IsOptional()
   @IsString()
-  @MaxLength(20)
-  firstName: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(20)
-  lastName: string;
-
-  @IsOptional()
-  @IsString()
   photo: string;
 
   @IsOptional()
@@ -142,15 +113,6 @@ export class UserUpdateDTO {
   @IsString()
   @MaxLength(1000)
   about: string;
-
-  @IsOptional()
-  @IsBoolean()
-  minority: boolean;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(60)
-  minorityDetail: string;
 
   @IsOptional()
   @IsBoolean()

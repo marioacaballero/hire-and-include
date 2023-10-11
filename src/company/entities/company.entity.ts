@@ -21,6 +21,9 @@ export class CompanyEntity extends BaseEntity {
   @Column({ unique: true })
   IDnumber: string; //CUIL/CUIT
 
+  @Column({ default: false })
+  escort: boolean; //para identificar si acompaña a sus empleados
+
   @Column({ default: 'buenos aires, argentina' })
   address: string; //domicilio
 

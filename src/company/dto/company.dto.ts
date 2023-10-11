@@ -29,6 +29,10 @@ export class CompanyDTO {
   @MaxLength(11)
   IDnumber: string;
 
+  @IsOptional()
+  @IsBoolean()
+  escort: boolean;
+
   @IsNotEmpty()
   @IsString()
   @MaxLength(30)
@@ -87,6 +91,10 @@ export class CompanyUpdateDTO {
   @IsString()
   @MaxLength(11)
   IDnumber: string;
+
+  @IsOptional()
+  @IsBoolean()
+  escort: boolean;
 
   @IsOptional()
   @IsString()

@@ -11,6 +11,12 @@ import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
 // Revisar y/o cambiar los enums que no van y pasarlos a relaciones
 @Entity({ name: 'profile' })
 export class ProfileEntity extends BaseEntity {
+  @Column()
+  firstName: string; //nombre
+
+  @Column()
+  lastName: string; //apellido
+
   @Column({ unique: true })
   email: string; //correo
 
