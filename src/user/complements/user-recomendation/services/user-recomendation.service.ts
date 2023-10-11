@@ -5,7 +5,7 @@ import {
   UserRecomendationDTO,
   UserRecomendationUpdateDTO,
 } from '../dto/user-recomendation.dto';
-import { ErrorManager } from 'src/helpers/error.manager';
+import { ErrorManager } from '../../../../helpers/error.manager';
 
 export class UserRecomendationService {
   constructor(
