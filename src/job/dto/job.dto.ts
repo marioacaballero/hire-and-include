@@ -12,6 +12,9 @@ import { ModeEntity } from '../complements/mode/entities/mode.entity';
 import { DisabilityEntity } from '../../user/complements/disability/entities/disability.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { JobUserEntity } from '../entities/job-user.entity';
+import { CultureEntity } from '../complements/culture/entities/culture.entity';
+import { PositionAreaEntity } from '../complements/position-area/entites/position-area.entity';
+import { SubPositionAreaEntity } from '../complements/sub-position-area/entities/sub-position-area.entity';
 
 export class JobDTO {
   @IsNotEmpty()
@@ -68,6 +71,15 @@ export class JobDTO {
 
   @IsNotEmpty()
   type: ChargeEntity;
+
+  @IsNotEmpty()
+  culture: CultureEntity;
+
+  @IsNotEmpty()
+  positionArea: PositionAreaEntity;
+
+  @IsNotEmpty()
+  subPositionArea: SubPositionAreaEntity;
 
   @IsNotEmpty()
   jobRelation: JobRelationEntity;
@@ -142,6 +154,15 @@ export class JobUpdateDTO {
   type: ChargeEntity;
 
   @IsOptional()
+  culture: CultureEntity;
+
+  @IsOptional()
+  positionArea: PositionAreaEntity;
+
+  @IsOptional()
+  subPositionArea: SubPositionAreaEntity;
+
+  @IsOptional()
   jobRelation: JobRelationEntity;
 
   @IsOptional()
@@ -150,7 +171,7 @@ export class JobUpdateDTO {
   @IsOptional()
   disability: DisabilityEntity;
 
-  @IsOptional()
+  @IsNotEmpty()
   company: CompanyEntity;
 
   @IsOptional()

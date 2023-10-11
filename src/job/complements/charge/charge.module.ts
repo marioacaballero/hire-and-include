@@ -8,5 +8,6 @@ import { ChargeEntity } from './entities/charge.entity';
   imports: [TypeOrmModule.forFeature([ChargeEntity])],
   providers: [ChargeService],
   controllers: [ChargeController],
+  exports: [ChargeService, TypeOrmModule],
 })
 export class ChargeModule {}

@@ -25,7 +25,7 @@ export class ModeController {
   }
 
   @Get('id/:id')
-  public async getOneById(@Param(':id') id: string) {
+  public async getOneById(@Param('id') id: string) {
     return await this.modeService.findOne(Number(id));
   }
 

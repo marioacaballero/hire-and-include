@@ -8,6 +8,8 @@ import { DisabilityEntity } from '../../user/complements/disability/entities/dis
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { JobUserEntity } from './job-user.entity';
 import { CultureEntity } from '../complements/culture/entities/culture.entity';
+import { PositionAreaEntity } from '../complements/position-area/entites/position-area.entity';
+import { SubPositionAreaEntity } from '../complements/sub-position-area/entities/sub-position-area.entity';
 
 //Entidad para cargar las ofertas de trabajo
 @Entity({ name: 'jobs' })
@@ -15,22 +17,22 @@ export class JobEntity extends BaseEntity {
   @Column()
   name: string; //puesto
 
-  @Column()
+  @Column('longtext')
   about: string; //objetivo
 
   @Column()
   salary: string; //rango salarial
 
-  @Column()
+  @Column('longtext')
   requirements: string; //requisitos
 
-  @Column()
+  @Column('longtext')
   tasks: string; //tareas
 
-  @Column()
+  @Column('longtext')
   inclusionProgram: string; //programa de inclusion
 
-  @Column()
+  @Column('longtext')
   benefits: string; //beneficios
 
   @Column()
@@ -39,11 +41,8 @@ export class JobEntity extends BaseEntity {
   @Column()
   city: string; //localidad, estado, pais
 
-  @Column({ default: false })
-  minority: boolean; //minoria
-
   @Column()
-  minorityDetail: string; //minoria detalle
+  quantity: number; //cantidad de vacantes
 
   @ManyToOne(() => SeniorityEntity, (seniority) => seniority.job)
   seniority: SeniorityEntity; //jerarquia
@@ -52,7 +51,13 @@ export class JobEntity extends BaseEntity {
   type: ChargeEntity; //carga horaria
 
   @ManyToOne(() => CultureEntity, (culture) => culture.job)
-  culture: CultureEntity; //carga horaria
+  culture: CultureEntity; //cultura de trabajo
+
+  @ManyToOne(() => PositionAreaEntity, (positionArea) => positionArea.job)
+  positionArea: PositionAreaEntity; //area de puesto
+
+  @ManyToOne(() => SubPositionAreaEntity, (subPosition) => subPosition.job)
+  subPositionArea: SubPositionAreaEntity; //subarea de puesto
 
   @ManyToOne(() => JobRelationEntity, (jobrelation) => jobrelation.job)
   jobRelation: JobRelationEntity; //tipo de contratación
@@ -61,7 +66,7 @@ export class JobEntity extends BaseEntity {
   jobMode: ModeEntity; //modalidad
 
   @ManyToOne(() => DisabilityEntity, (disability) => disability.job)
-  disability: DisabilityEntity; //discapacidad o limitacion
+  disability: DisabilityEntity; //necesidad de apoyo
 
   @ManyToOne(() => CompanyEntity, (company) => company.job)
   company: CompanyEntity; //relacion con la empresa que crea el trabajo

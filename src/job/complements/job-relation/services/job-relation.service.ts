@@ -13,6 +13,16 @@ export class JobRelationService {
   //crear una nueva contratacion
   public async createOne(body: JobRelationDTO): Promise<JobRelationEntity> {
     try {
+      const jobrelationExist = await this.jobrelationRepository.find({
+        where: { name: body.name },
+      });
+      if (jobrelationExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The job relation exist on database',
+        });
+      }
+
       const jobrelation = await this.jobrelationRepository.save(body);
       if (!jobrelation) {
         throw new ErrorManager({

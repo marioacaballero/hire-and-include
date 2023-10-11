@@ -9,6 +9,12 @@ import { CultureModule } from './complements/culture/culture.module';
 import { JobService } from './services/job.service';
 import { JobController } from './controllers/job.controller';
 import { JobEntity } from './entities/job.entity';
+import { SeniorityService } from './complements/seniority/services/seniority.service';
+import { CompanyService } from '../company/services/company.service';
+import { CompanyModule } from '../company/company.module';
+import { ProfileModule } from '../profile/profile.module';
+import { PositionAreaModule } from './complements/position-area/position-area.module';
+import { SubPositionAreaModule } from './complements/sub-position-area/sub-position-area.module';
 
 @Module({
   imports: [
@@ -19,8 +25,21 @@ import { JobEntity } from './entities/job.entity';
     JobRelationModule,
     ModeModule,
     CultureModule,
+    CompanyModule,
+    ProfileModule,
+    PositionAreaModule,
+    SubPositionAreaModule,
   ],
-  providers: [JobService],
+  providers: [
+    JobService,
+    SeniorityService,
+    ChargeModule,
+    JobRelationModule,
+    ModeModule,
+    CultureModule,
+    CompanyService,
+  ],
   controllers: [JobController],
+  exports: [JobService, TypeOrmModule],
 })
 export class JobModule {}

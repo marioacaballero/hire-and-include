@@ -10,8 +10,19 @@ import {
 import { ACCESLEVEL, PROFILETYPE } from '../../constants/enums/profile';
 import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
+import { UserEntity } from '../../user/entities/user.entity';
 
 export class ProfileDTO {
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(20)
+  firstName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(20)
+  lastName: string;
+
   @IsNotEmpty()
   @IsString()
   @IsEmail()
@@ -24,7 +35,7 @@ export class ProfileDTO {
   @MaxLength(8)
   password: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsEnum(PROFILETYPE)
   profileType: PROFILETYPE;
 
@@ -35,13 +46,26 @@ export class ProfileDTO {
   @IsNotEmpty()
   earUs: EarUsEntity;
 
-  @IsNotEmpty()
+  @IsOptional()
   companyProfile: CompanyEntity;
+
+  @IsOptional()
+  userProfile: UserEntity;
 }
 
 export class ProfileUpdateDTO {
   @IsOptional()
   @IsString()
+  @MaxLength(20)
+  firstName: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(20)
+  lastName: string;
+
+  @IsOptional()
+  @IsString()
   @IsEmail()
   @MaxLength(50)
   email: string;
@@ -65,4 +89,7 @@ export class ProfileUpdateDTO {
 
   @IsOptional()
   companyProfile: CompanyEntity;
+
+  @IsOptional()
+  userProfile: UserEntity;
 }

@@ -3,10 +3,10 @@ import {
   IsDate,
   IsEnum,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
+  MinLength,
 } from 'class-validator';
 import { JOB_STATE } from '../../constants/enums/user';
 import { LanguageEntity } from '../complements/language/entities/language.entity';
@@ -20,23 +20,12 @@ import { GenreEntity } from '../complements/genre/entities/genre.entity';
 import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
 
 export class UserDTO {
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(20)
-  firstName: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(20)
-  lastName: string;
-
   @IsOptional()
   @IsString()
   photo: string;
 
   @IsNotEmpty()
   @IsDate()
-  @MaxLength(10)
   birthdate: Date;
 
   @IsNotEmpty()
@@ -54,16 +43,7 @@ export class UserDTO {
   @MaxLength(1000)
   about: string;
 
-  @IsNotEmpty()
-  @IsBoolean()
-  minority: boolean;
-
   @IsOptional()
-  @IsString()
-  @MaxLength(60)
-  minorityDetail: string;
-
-  @IsNotEmpty()
   @IsBoolean()
   DBconsent: boolean;
 
@@ -77,9 +57,10 @@ export class UserDTO {
   cityAndCountry: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
+  @MinLength(8)
   @MaxLength(11)
-  IDnumber: number;
+  IDnumber: string;
 
   @IsOptional()
   languages: LanguageEntity[];
@@ -112,21 +93,10 @@ export class UserDTO {
 export class UserUpdateDTO {
   @IsOptional()
   @IsString()
-  @MaxLength(20)
-  firstName: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(20)
-  lastName: string;
-
-  @IsOptional()
-  @IsString()
   photo: string;
 
   @IsOptional()
   @IsDate()
-  @MaxLength(10)
   birthdate: Date;
 
   @IsOptional()
@@ -146,15 +116,6 @@ export class UserUpdateDTO {
 
   @IsOptional()
   @IsBoolean()
-  minority: boolean;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(60)
-  minorityDetail: string;
-
-  @IsOptional()
-  @IsBoolean()
   DBconsent: boolean;
 
   @IsOptional()
@@ -167,9 +128,10 @@ export class UserUpdateDTO {
   cityAndCountry: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
+  @MinLength(8)
   @MaxLength(11)
-  IDnumber: number;
+  IDnumber: string;
 
   @IsOptional()
   languages: LanguageEntity[];
@@ -183,7 +145,7 @@ export class UserUpdateDTO {
   @IsOptional()
   experiencies: JobExperienceEntity[];
 
-  @IsOptional()
+  @IsNotEmpty()
   profile: ProfileEntity;
 
   @IsOptional()

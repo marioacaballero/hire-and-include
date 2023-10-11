@@ -13,6 +13,16 @@ export class CultureService {
   //crear una nueva cultura
   public async createOne(body: CultureDTO): Promise<CultureEntity> {
     try {
+      const cultureExist = await this.cultureRepository.find({
+        where: { name: body.name },
+      });
+      if (cultureExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The culture exist on database',
+        });
+      }
+
       const culture = await this.cultureRepository.save(body);
       if (!culture) {
         throw new ErrorManager({

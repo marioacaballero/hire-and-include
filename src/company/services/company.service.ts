@@ -36,15 +36,7 @@ export class CompanyService {
         });
       }
 
-      const activityExist = await this.activityAreaService.findOne(
-        body.activityArea.id,
-      );
-      if (!activityExist) {
-        throw new ErrorManager({
-          type: 'BAD_REQUEST',
-          message: 'The Activity Area not exist on database',
-        });
-      }
+      await this.activityAreaService.findOne(body.activityArea.id);
 
       const company = await this.companyRepository.save(body);
       if (!company) {
@@ -82,6 +74,8 @@ export class CompanyService {
       const company = await this.companyRepository
         .createQueryBuilder('company')
         .where({ id })
+        .leftJoinAndSelect('company.profile', 'profile')
+        .leftJoinAndSelect('company.job', 'job')
         .getOne();
 
       if (!company) {

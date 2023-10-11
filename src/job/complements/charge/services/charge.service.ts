@@ -13,6 +13,16 @@ export class ChargeService {
   //crear un nuevo horario
   public async createOne(body: ChargeDTO): Promise<ChargeEntity> {
     try {
+      const chargeExist = await this.chargeRepository.find({
+        where: { name: body.name },
+      });
+      if (chargeExist.length) {
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'The charge exist on database',
+        });
+      }
+
       const charge = await this.chargeRepository.save(body);
       if (!charge) {
         throw new ErrorManager({

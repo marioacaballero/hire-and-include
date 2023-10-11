@@ -29,6 +29,10 @@ export class CompanyDTO {
   @MaxLength(11)
   IDnumber: string;
 
+  @IsOptional()
+  @IsBoolean()
+  escort: boolean;
+
   @IsNotEmpty()
   @IsString()
   @MaxLength(30)
@@ -89,6 +93,10 @@ export class CompanyUpdateDTO {
   IDnumber: string;
 
   @IsOptional()
+  @IsBoolean()
+  escort: boolean;
+
+  @IsOptional()
   @IsString()
   @MaxLength(30)
   address: string;
@@ -120,7 +128,7 @@ export class CompanyUpdateDTO {
   @IsOptional()
   activityArea: ActivityAreaEntity;
 
-  @IsOptional()
+  @IsNotEmpty()
   profile: ProfileEntity;
 
   @IsOptional()
