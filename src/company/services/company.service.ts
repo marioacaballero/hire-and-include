@@ -18,23 +18,23 @@ export class CompanyService {
   public async createOne(body: CompanyDTO): Promise<CompanyEntity> {
     try {
       const profile = await this.profileService.findOne(body.profile.id);
-      if (profile.companyProfile) {
-        throw new ErrorManager({
-          type: 'BAD_REQUEST',
-          message: 'The profile has an company',
-        });
-      }
+      // if (profile.companyProfile) {
+      //   throw new ErrorManager({
+      //     type: 'BAD_REQUEST',
+      //     message: 'The profile has an company',
+      //   });
+      // }
       body.profile = profile;
 
-      const cuilExist = await this.companyRepository.find({
-        where: { IDnumber: body.IDnumber },
-      });
-      if (cuilExist.length) {
-        throw new ErrorManager({
-          type: 'BAD_REQUEST',
-          message: 'The IDnumber is on database',
-        });
-      }
+      // const cuilExist = await this.companyRepository.find({
+      //   where: { IDnumber: body.IDnumber },
+      // });
+      // if (cuilExist.length) {
+      //   throw new ErrorManager({
+      //     type: 'BAD_REQUEST',
+      //     message: 'The IDnumber is on database',
+      //   });
+      // }
 
       await this.activityAreaService.findOne(body.activityArea.id);
 

@@ -29,16 +29,16 @@ export class UserService {
         });
       }
       body.profile = profile;
-      const dniExist = await this.userRepository.find({
-        where: { IDnumber: body.IDnumber },
-      });
+      // const dniExist = await this.userRepository.find({
+      //   where: { IDnumber: body.IDnumber },
+      // });
 
-      if (dniExist.length) {
-        throw new ErrorManager({
-          type: 'BAD_REQUEST',
-          message: 'The IDnumber is on database',
-        });
-      }
+      // if (dniExist.length) {
+      //   throw new ErrorManager({
+      //     type: 'BAD_REQUEST',
+      //     message: 'The IDnumber is on database',
+      //   });
+      // }
 
       const user = await this.userRepository.save(body);
       if (!user) {

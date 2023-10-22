@@ -17,8 +17,6 @@ import { ProfileEntity } from '../../profile/entities/profile.entity';
 import { DisabilityEntity } from '../complements/disability/entities/disability.entity';
 import { JobUserEntity } from '../../job/entities/job-user.entity';
 import { GenreEntity } from '../complements/genre/entities/genre.entity';
-import { PurposeEntity } from '../complements/purpose/entities/purpose.entity';
-import { CompanyEntity } from '../../company/entities/company.entity';
 import { RecomendationEntity } from '../../company/complements/recomendation/entities/recomendation.entity';
 import { UserToUserRecomendationEntity } from '../complements/user-recomendation/entities/user-to-user-recomendation.entity';
 import { UserRecomendationEntity } from '../complements/user-recomendation/entities/user-recomendation.entity';
@@ -30,15 +28,6 @@ export class UserEntity extends BaseEntity {
   photo: string; //foto de perfil
 
   @Column()
-  birthdate: Date; //fecha de nacimiento*
-
-  @Column()
-  phone: string; //telefono*
-
-  @Column({ default: '' })
-  socialMedia: string; //RRSS
-
-  @Column()
   about: string; //perfil*
 
   @Column({ default: false })
@@ -46,12 +35,6 @@ export class UserEntity extends BaseEntity {
 
   @Column({ type: 'enum', enum: JOB_STATE })
   jobState: JOB_STATE; //estado de postulante*
-
-  @Column()
-  cityAndCountry: string; //localidad, provincia, pais*
-
-  @Column({ unique: true })
-  IDnumber: string; //DNI/CUIL/PASAPORTE*
 
   // Relationships
   @ManyToMany(() => LanguageEntity, (language) => language.user)
@@ -71,9 +54,6 @@ export class UserEntity extends BaseEntity {
   @OneToOne(() => ProfileEntity, (profile) => profile.userProfile)
   profile: ProfileEntity; //relacion con el perfil de logeo
 
-  @ManyToOne(() => PurposeEntity, (purpose) => purpose.user)
-  purpose: PurposeEntity; //proposito
-
   @ManyToOne(() => GenreEntity, (genre) => genre.user)
   genre: GenreEntity; //genero
 
@@ -82,9 +62,6 @@ export class UserEntity extends BaseEntity {
 
   @OneToMany(() => JobUserEntity, (jobUser) => jobUser.user)
   jobUser: JobUserEntity[]; //relacion a la tabla intermedia para muchas ofertas de trabajo
-
-  @ManyToOne(() => CompanyEntity, (company) => company.userRelation)
-  companyRelation: CompanyEntity; // relacion directa para saber si pertenece o no a una empresa
 
   @OneToOne(() => RecomendationEntity, (recomendation) => recomendation.user)
   companyRecomendation: RecomendationEntity; // relacion para las recomendaciones de la empresa

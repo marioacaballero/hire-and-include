@@ -3,12 +3,16 @@ import { Exclude } from 'class-transformer';
 import { BaseEntity } from '../../config/base.entity';
 import { UserEntity } from '../../user/entities/user.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
-import { ACCESLEVEL, PROFILETYPE, ROLES } from '../../constants/enums/profile';
+import {
+  ACCESLEVEL,
+  ID_TYPE,
+  PROFILETYPE,
+  ROLES,
+} from '../../constants/enums/profile';
 import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
+import { MaxLength, MinLength } from 'class-validator';
 
-// Entidad para completar el perfil de logeo / registro
-
-// Revisar y/o cambiar los enums que no van y pasarlos a relaciones
+// Entidad para completar el perfil de logeo / registro del usuario postulante
 @Entity({ name: 'profile' })
 export class ProfileEntity extends BaseEntity {
   @Column()
@@ -17,12 +21,32 @@ export class ProfileEntity extends BaseEntity {
   @Column()
   lastName: string; //apellido
 
+  @Column({ type: 'enum', enum: ID_TYPE })
+  IDnumberType: ID_TYPE; //tipo de documento*
+
   @Column({ unique: true })
-  email: string; //correo
+  IDnumber: string; //DNI/CUIL/PASAPORTE*
+
+  @Column()
+  cityAndCountry: string; //localidad, provincia, pais*
+
+  @Column()
+  birthdate: Date; //fecha de nacimiento*
+
+  @Column()
+  phone: string; //telefono*
+
+  @Column({ default: '' })
+  socialMedia: string; //RRSS
+
+  @Column({ unique: true })
+  email: string; //correo*
 
   @Exclude()
   @Column()
-  password: string; //contraseña
+  @MinLength(5)
+  @MaxLength(13)
+  password: string; //contraseña*
 
   @Column({ type: 'enum', enum: ROLES, default: ROLES.BASIC })
   rol: ROLES; //rol (admin, admin user, basico, etc)
@@ -39,9 +63,8 @@ export class ProfileEntity extends BaseEntity {
 
   @OneToOne(() => UserEntity, (user) => user.profile)
   @JoinColumn()
-  userProfile: UserEntity; //relacion con postulante
+  userProfile: UserEntity; //relacion para completar el perfil de usuario
 
-  @OneToOne(() => CompanyEntity, (company) => company.profile)
-  @JoinColumn()
-  companyProfile: CompanyEntity; //relacion con empresa
+  @ManyToOne(() => CompanyEntity, (company) => company.userRelation)
+  companyRelation: CompanyEntity; // relacion directa para saber si pertenece o no a una empresa
 }
