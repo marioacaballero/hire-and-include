@@ -1,8 +1,9 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../config/base.entity';
 import { ProfileEntity } from '../../profile/entities/profile.entity';
 import { JobEntity } from '../../job/entities/job.entity';
 import { RecomendationEntity } from '../complements/recomendation/entities/recomendation.entity';
+import { ProfileCompanyEntity } from '../../profile/entities/profile-company.entity';
 
 //Entidad para cargar el perfil de Empresa
 @Entity({ name: 'companies' })
@@ -26,4 +27,7 @@ export class CompanyEntity extends BaseEntity {
     (recomendation) => recomendation.company,
   )
   recomendation: RecomendationEntity[]; //relacion para recomendaciones de usuarios
+
+  @OneToOne(() => ProfileCompanyEntity, (profile) => profile.company)
+  profile: ProfileCompanyEntity; //relacion con el perfil de logeo de la empresa
 }

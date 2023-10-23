@@ -3,14 +3,8 @@ import { Exclude } from 'class-transformer';
 import { BaseEntity } from '../../config/base.entity';
 import { UserEntity } from '../../user/entities/user.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
-import {
-  ACCESLEVEL,
-  ID_TYPE,
-  PROFILETYPE,
-  ROLES,
-} from '../../constants/enums/profile';
+import { ACCESLEVEL, ID_TYPE, ROLES } from '../../constants/enums/profile';
 import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
-import { MaxLength, MinLength } from 'class-validator';
 
 // Entidad para completar el perfil de logeo / registro del usuario postulante
 @Entity({ name: 'profile' })
@@ -39,20 +33,21 @@ export class ProfileEntity extends BaseEntity {
   @Column({ default: '' })
   socialMedia: string; //RRSS
 
+  @Column({ default: '', length: 1000 })
+  about: string; //sobre mi
+
   @Column({ unique: true })
   email: string; //correo*
 
   @Exclude()
   @Column()
-  @MinLength(5)
-  @MaxLength(13)
   password: string; //contraseña*
+
+  @Column({ default: false })
+  news: boolean; //recibir novedades
 
   @Column({ type: 'enum', enum: ROLES, default: ROLES.BASIC })
   rol: ROLES; //rol (admin, admin user, basico, etc)
-
-  @Column({ type: 'enum', enum: PROFILETYPE, default: PROFILETYPE.APPLICANT })
-  profileType: PROFILETYPE; //tipo de usuario (postulante, empresa, ong, etc)
 
   @Column({ type: 'enum', enum: ACCESLEVEL, default: ACCESLEVEL.PUBLIC })
   accesLevel: ACCESLEVEL; //nivel de acceso

@@ -1,8 +1,9 @@
-import { Column, Entity /*, ManyToOne */ } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import { MaxLength, MinLength } from 'class-validator';
 import { BaseEntity } from '../../config/base.entity';
-// import { ActivityAreaEntity } from '../../job/complements/activity-area/entities/activity-areas.entity';
+import { ActivityAreaEntity } from '../../job/complements/activity-area/entities/activity-areas.entity';
+import { CompanyEntity } from '../../company/entities/company.entity';
+import { ACCESLEVEL, ROLES } from '../../constants/enums/profile';
 
 @Entity({ name: 'profile-company' })
 export class ProfileCompanyEntity extends BaseEntity {
@@ -17,8 +18,6 @@ export class ProfileCompanyEntity extends BaseEntity {
 
   @Exclude()
   @Column()
-  @MinLength(5)
-  @MaxLength(13)
   password: string; //contraseña*
 
   @Column({ default: 'hire and include' })
@@ -27,8 +26,8 @@ export class ProfileCompanyEntity extends BaseEntity {
   @Column({ default: 'hire and include' })
   bussinessName: string; //razon social
 
-  // @ManyToOne(() => ActivityAreaEntity, (area) => area.company)
-  // activityArea: ActivityAreaEntity; //area de actividad
+  @ManyToOne(() => ActivityAreaEntity, (area) => area.company)
+  activityArea: ActivityAreaEntity; //area de actividad
 
   @Column()
   fiscalCondition: string; //condicion fiscal
@@ -54,12 +53,22 @@ export class ProfileCompanyEntity extends BaseEntity {
   @Column({ default: 'www.hireandinclude.com' })
   web: string; //sitio web
 
-  @Column()
+  @Column({ default: false })
   integration: boolean; //apoyo a la integracion
 
-  @Column()
+  @Column({ default: false })
   news: boolean; //recibir novedades
 
   @Column({ default: false })
   isONG: boolean; //para identificar si es ONG
+
+  @OneToOne(() => CompanyEntity, (company) => company.profile)
+  @JoinColumn()
+  company: CompanyEntity; //relacion con la empresa
+
+  @Column({ type: 'enum', enum: ROLES, default: ROLES.BASIC })
+  rol: ROLES; //rol (admin, admin user, basico, etc)
+
+  @Column({ type: 'enum', enum: ACCESLEVEL, default: ACCESLEVEL.PUBLIC })
+  accesLevel: ACCESLEVEL; //nivel de acceso
 }

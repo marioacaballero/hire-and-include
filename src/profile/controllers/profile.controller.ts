@@ -4,22 +4,15 @@ import {
   Delete,
   Get,
   Param,
-  // Post,
   Put,
   Query,
 } from '@nestjs/common';
 import { ProfileService } from '../services/profile.service';
 import { ProfileUpdateDTO } from '../dto/profile.dto';
 
-@Controller('profile')
+@Controller('profile-user')
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
-
-  // Esto lo hace el registro, ya no es necesario aca
-  // @Post()
-  // public async createProfile(@Body() body: AuthDTO) {
-  //   return await this.profileService.createProfile(body);
-  // }
 
   @Get()
   public async getAll() {
