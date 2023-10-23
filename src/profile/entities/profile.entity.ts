@@ -54,6 +54,7 @@ export class ProfileEntity extends BaseEntity {
 
   // Relationships
   @ManyToOne(() => EarUsEntity, (ear) => ear.profile)
+  @JoinColumn({ name: 'earUsId' })
   earUs: EarUsEntity; //relacion con como nos conociste
 
   @OneToOne(() => UserEntity, (user) => user.profile)
@@ -61,5 +62,6 @@ export class ProfileEntity extends BaseEntity {
   userProfile: UserEntity; //relacion para completar el perfil de usuario
 
   @ManyToOne(() => CompanyEntity, (company) => company.userRelation)
+  @JoinColumn({ name: 'companyRelationId' })
   companyRelation: CompanyEntity; // relacion directa para saber si pertenece o no a una empresa
 }
