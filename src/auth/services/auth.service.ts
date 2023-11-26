@@ -1,27 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { hash, compare } from 'bcrypt';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { compare } from 'bcrypt';
 import { JwtPayload, sign } from 'jsonwebtoken';
-import { ProfileService } from '../../profile/services/profile.service';
 import { ErrorManager } from '../../helpers/error.manager';
-import { AuthDTO } from '../dto/auth.dto';
+import { ProfileEntity } from '../../profile/entities/profile.entity';
+import { ProfileCompanyEntity } from '../../profile/entities/profile-company.entity';
+
+ConfigModule.forRoot({
+  envFilePath: '.env',
+});
+
+const configService = new ConfigService();
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly profileService: ProfileService) {}
-
-  //Profile Register
-  public async register(userObject: AuthDTO) {
-    try {
-      //Hash password
-      userObject.password = await hash(
-        userObject.password,
-        +process.env.HASH_SALT,
-      );
-      return this.profileService.createProfile(userObject);
-    } catch (error) {
-      throw ErrorManager.createSignatureError(error.message);
-    }
-  }
+  constructor() {}
 
   public signJWT({
     payload,
@@ -35,36 +28,35 @@ export class AuthService {
     return sign(payload, secret, { expiresIn: expires });
   }
 
-  //Login Profile
-  public async login(email: string, password: string) {
+  // login validate
+  public async loginValidate(
+    password: string,
+    profile: ProfileEntity | ProfileCompanyEntity,
+  ) {
     try {
-      //Check if profile exists
-      const findProfile = await this.profileService.findOneByEmail(email);
-
-      if (!findProfile)
-        throw new ErrorManager({
-          type: 'NOT_FOUND',
-          message: `The profile not found with email: ${email}`,
-        });
-
       //Check if password is correct
-      const checkPassword = await compare(password, findProfile.password);
+      const checkPassword = await compare(password, profile.password);
 
       if (!checkPassword)
         throw new ErrorManager({
           type: 'UNAUTHORIZED',
           message: 'The password is invalid',
         });
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
 
-      const payload = { id: findProfile.id };
-
+  //Login Profile
+  public async login(profile: ProfileEntity | ProfileCompanyEntity) {
+    try {
       return {
         accesToken: this.signJWT({
-          payload,
-          secret: process.env.JWT_SECRET,
+          payload: { id: profile.id },
+          secret: configService.get('JWT_SECRET'),
           expires: '22h',
         }),
-        profile: findProfile,
+        profile,
       };
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);

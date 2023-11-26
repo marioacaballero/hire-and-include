@@ -14,10 +14,10 @@ export class JobExperienceEntity extends BaseEntity {
   @Column()
   company: string; //nombre de la empresa*
 
-  @Column()
+  @Column({ length: 1000 })
   performance: string; //funcion
 
-  @Column()
+  @Column({ length: 1000 })
   achievement: string; //logros
 
   @Column()

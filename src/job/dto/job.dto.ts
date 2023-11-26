@@ -32,6 +32,18 @@ export class JobDTO {
   @MaxLength(100)
   salary: string;
 
+  @IsOptional()
+  @IsBoolean()
+  showSalary: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  receiveCvByEmail: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  showCompanyName: boolean;
+
   @IsNotEmpty()
   @IsString()
   requirements: string;
@@ -112,6 +124,18 @@ export class JobUpdateDTO {
   @IsString()
   @MaxLength(100)
   salary: string;
+
+  @IsOptional()
+  @IsBoolean()
+  showSalary: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  receiveCvByEmail: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  showCompanyName: boolean;
 
   @IsOptional()
   @IsString()

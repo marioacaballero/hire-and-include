@@ -1,18 +1,21 @@
-import { Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { hash } from 'bcrypt';
-import { ProfileEntity } from '../entities/profile.entity';
-import { ProfileDTO, ProfileUpdateDTO } from '../dto/profile.dto';
+import { ProfileCompanyEntity } from '../entities/profile-company.entity';
 import { ErrorManager } from '../../helpers/error.manager';
+import {
+  ProfileCompanyDTO,
+  ProfileCompanyUpdateDTO,
+} from '../dto/profile-company.dto';
 
-export class ProfileService {
+export class ProfileCompanyService {
   constructor(
-    @InjectRepository(ProfileEntity)
-    private readonly profileRepository: Repository<ProfileEntity>,
+    @InjectRepository(ProfileCompanyEntity)
+    private readonly profileCompanyRepository: Repository<ProfileCompanyEntity>,
   ) {}
 
   //Profile Register
-  public async register(userObject: ProfileDTO) {
+  public async register(userObject: ProfileCompanyDTO) {
     try {
       //Hash password
       userObject.password = await hash(
@@ -20,8 +23,8 @@ export class ProfileService {
         +process.env.HASH_SALT,
       );
 
-      const profile: ProfileEntity = await this.profileRepository
-        .createQueryBuilder('profile')
+      const profile: ProfileCompanyEntity = await this.profileCompanyRepository
+        .createQueryBuilder('profile-company')
         .where({ email: userObject.email })
         .getOne();
 
@@ -31,12 +34,12 @@ export class ProfileService {
           message: 'The email is already registered in the database',
         });
       }
-      const newProfile = await this.profileRepository.save(userObject);
+      const newProfile = await this.profileCompanyRepository.save(userObject);
 
       if (!newProfile) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
-          message: 'The new profile is not created',
+          message: 'The new company profile is not created',
         });
       }
       return newProfile;
@@ -46,17 +49,17 @@ export class ProfileService {
   }
 
   //Busca un usuario por email
-  public async findOneByEmail(email: string): Promise<ProfileEntity> {
+  public async findOneByEmail(email: string): Promise<ProfileCompanyEntity> {
     try {
-      const profile: ProfileEntity = await this.profileRepository
-        .createQueryBuilder('profile')
+      const profile: ProfileCompanyEntity = await this.profileCompanyRepository
+        .createQueryBuilder('profile-company')
         .where({ email })
         .getOne();
 
       if (!profile) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: `The profile not found with email: ${email}`,
+          message: `The company profile not found with email: ${email}`,
         });
       }
 
@@ -67,13 +70,13 @@ export class ProfileService {
   }
 
   //Buscar todas los usuarios de la db
-  public async findAll(): Promise<ProfileEntity[]> {
+  public async findAll(): Promise<ProfileCompanyEntity[]> {
     try {
-      const allprofiles = await this.profileRepository.find();
+      const allprofiles = await this.profileCompanyRepository.find();
       if (!allprofiles.length) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: "We don't have profiles on database",
+          message: "We don't have company profiles on database",
         });
       }
       return allprofiles;
@@ -83,19 +86,19 @@ export class ProfileService {
   }
 
   //Busca un usuario en particular
-  public async findOne(id: number): Promise<ProfileEntity> {
+  public async findOne(id: number): Promise<ProfileCompanyEntity> {
     try {
-      const profile = await this.profileRepository
-        .createQueryBuilder('profile')
+      const profile = await this.profileCompanyRepository
+        .createQueryBuilder('profile-company')
         .where({ id })
-        .leftJoinAndSelect('profile.userProfile', 'userProfile')
-        .leftJoinAndSelect('profile.earUs', 'earUs')
+        .leftJoinAndSelect('profile-company.company', 'company')
+        .leftJoinAndSelect('profile-company.activityArea', 'activityArea')
         .getOne();
 
       if (!profile) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: `The profile with ID: ${id} do not exist`,
+          message: `The company profile with ID: ${id} do not exist`,
         });
       }
 
@@ -108,17 +111,17 @@ export class ProfileService {
   //Modificar un usuario en particular
   public async updateOne(
     id: number,
-    body: ProfileUpdateDTO,
-  ): Promise<ProfileEntity> {
+    body: ProfileCompanyUpdateDTO,
+  ): Promise<ProfileCompanyEntity> {
     try {
-      const profile: UpdateResult = await this.profileRepository.update(
+      const profile: UpdateResult = await this.profileCompanyRepository.update(
         id,
         body,
       );
       if (!profile.affected) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: `The profile number ${id} is not in database`,
+          message: `The company profile number ${id} is not in database`,
         });
       }
       return await this.findOne(id);
@@ -128,15 +131,18 @@ export class ProfileService {
   }
 
   //Borrar un usuario (soft)
-  public async deleteOne(id: number): Promise<ProfileEntity> {
+  public async deleteOne(id: number): Promise<ProfileCompanyEntity> {
     try {
-      const profile: UpdateResult = await this.profileRepository.update(id, {
-        isActive: false,
-      });
+      const profile: UpdateResult = await this.profileCompanyRepository.update(
+        id,
+        {
+          isActive: false,
+        },
+      );
       if (!profile.affected) {
         throw new ErrorManager({
           type: 'NOT_FOUND',
-          message: `The profile number ${id} is not in database`,
+          message: `The company profile number ${id} is not in database`,
         });
       }
       return await this.findOne(id);
