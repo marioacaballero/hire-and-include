@@ -61,8 +61,8 @@ export class ProfileDTO {
 
   @IsNotEmpty()
   @IsString()
-  @MinLength(4)
-  @MaxLength(8)
+  @MinLength(5)
+  @MaxLength(20)
   password: string;
 
   @IsOptional()
