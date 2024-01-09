@@ -17,12 +17,15 @@ import { ModeModule } from '../job/complements/mode/mode.module';
 import { CompanyEntity } from '../company/entities/company.entity';
 import { ActivityAreaModule } from '../job/complements/activity-area/activity-area.module';
 import { UserRecomendationModule } from './complements/user-recomendation/user-recomendation.module';
+import { ProfileCompanyService } from 'src/profile/services/profile-company.service';
+import { ProfileCompanyEntity } from 'src/profile/entities/profile-company.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       UserEntity,
       ProfileEntity,
+      ProfileCompanyEntity,
       JobUserEntity,
       JobEntity,
       CompanyEntity,
@@ -36,6 +39,12 @@ import { UserRecomendationModule } from './complements/user-recomendation/user-r
     UserRecomendationModule,
   ],
   controllers: [UserController],
-  providers: [UserService, ProfileService, JobService, CompanyService],
+  providers: [
+    UserService,
+    ProfileService,
+    ProfileCompanyService,
+    JobService,
+    CompanyService,
+  ],
 })
 export class UserModule {}
