@@ -3,15 +3,14 @@ import { Repository, UpdateResult } from 'typeorm';
 import { CompanyDTO, CompanyUpdateDTO } from '../../company/dto/company.dto';
 import { ErrorManager } from '../../helpers/error.manager';
 import { CompanyEntity } from '../../company/entities/company.entity';
-import { ProfileService } from '../../profile/services/profile.service';
-import { ActivityAreaService } from '../../job/complements/activity-area/services/activity-area.service';
+// import { ActivityAreaService } from '../../job/complements/activity-area/services/activity-area.service';
+import { ProfileCompanyService } from 'src/profile/services/profile-company.service';
 
 export class CompanyService {
   constructor(
     @InjectRepository(CompanyEntity)
     private readonly companyRepository: Repository<CompanyEntity>,
-    private readonly profileService: ProfileService,
-    private readonly activityAreaService: ActivityAreaService,
+    private readonly profileService: ProfileCompanyService, // private readonly activityAreaService: ActivityAreaService,
   ) {}
 
   //crear una nueva empresa
@@ -36,7 +35,7 @@ export class CompanyService {
       //   });
       // }
 
-      await this.activityAreaService.findOne(body.activityArea.id);
+      // await this.activityAreaService.findOne(body.activityArea.id);
 
       const company = await this.companyRepository.save(body);
       if (!company) {
