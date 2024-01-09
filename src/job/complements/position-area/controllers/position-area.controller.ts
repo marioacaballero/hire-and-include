@@ -28,7 +28,7 @@ export class PositionAreaController {
   }
 
   @Get('id/:id')
-  public async findOnePosition(id: string) {
+  public async findOnePosition(@Param('id') id: string) {
     return await this.positionAreaService.findOne(+id);
   }
 
