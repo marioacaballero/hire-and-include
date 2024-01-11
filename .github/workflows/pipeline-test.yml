@@ -6,7 +6,7 @@ on:
 
 jobs:
   test_action_runner:
-    runs-on: [self-hosted, hire-runner]
+    runs-on: self-hosted
     steps:
       - name: Checkout and set up repository
         run: console.log("Checkout and set up repository")
