@@ -5,8 +5,10 @@ on:
     branches: [master, develop]
 
 jobs:
-  test_action_runner:
-    runs-on: self-hosted
+  probando_runner:
+    runs-on:
+      - self-hosted
+      - hire-test-runner
     steps:
       - uses: actions/setup-node@v3
         with:
