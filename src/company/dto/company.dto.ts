@@ -1,72 +1,18 @@
-import {
-  IsBoolean,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  MaxLength,
-} from 'class-validator';
-import { ActivityAreaEntity } from '../../job/complements/activity-area/entities/activity-areas.entity';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { JobEntity } from '../../job/entities/job.entity';
-import { ProfileEntity } from '../../profile/entities/profile.entity';
+import { ProfileCompanyEntity } from '../../profile/entities/profile-company.entity';
 
 export class CompanyDTO {
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(20)
-  name: string;
-
   @IsOptional()
   @IsString()
   logo: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(30)
-  bussinessName: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(11)
-  IDnumber: string;
 
   @IsOptional()
   @IsBoolean()
   escort: boolean;
 
   @IsNotEmpty()
-  @IsString()
-  @MaxLength(30)
-  address: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(20)
-  phone: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(80)
-  web: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(100)
-  socialMedia: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(100)
-  cityAndCountry: string;
-
-  @IsOptional()
-  @IsBoolean()
-  isONG: boolean;
-
-  @IsNotEmpty()
-  activityArea: ActivityAreaEntity;
-
-  @IsNotEmpty()
-  profile: ProfileEntity;
+  profile: ProfileCompanyEntity;
 
   @IsOptional()
   job: JobEntity[];
@@ -75,61 +21,14 @@ export class CompanyDTO {
 export class CompanyUpdateDTO {
   @IsOptional()
   @IsString()
-  @MaxLength(20)
-  name: string;
-
-  @IsOptional()
-  @IsString()
   logo: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(30)
-  bussinessName: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(11)
-  IDnumber: string;
 
   @IsOptional()
   @IsBoolean()
   escort: boolean;
 
-  @IsOptional()
-  @IsString()
-  @MaxLength(30)
-  address: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(20)
-  phone: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(80)
-  web: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(100)
-  socialMedia: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(100)
-  cityAndCountry: string;
-
-  @IsOptional()
-  @IsBoolean()
-  isONG: boolean;
-
-  @IsOptional()
-  activityArea: ActivityAreaEntity;
-
   @IsNotEmpty()
-  profile: ProfileEntity;
+  profile: ProfileCompanyEntity;
 
   @IsOptional()
   job: JobEntity[];

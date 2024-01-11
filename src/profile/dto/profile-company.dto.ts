@@ -30,7 +30,7 @@ export class ProfileCompanyDTO {
 
   @IsNotEmpty()
   @MinLength(5)
-  @MaxLength(8)
+  @MaxLength(20)
   @IsString()
   password: string; //contraseña*
 

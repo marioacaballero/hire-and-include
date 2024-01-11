@@ -1,6 +1,7 @@
 import {
   IsBoolean,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
@@ -47,6 +48,10 @@ export class JobDTO {
   @IsNotEmpty()
   @IsString()
   requirements: string;
+
+  @IsOptional()
+  @IsNumber()
+  quantity: number;
 
   @IsNotEmpty()
   @IsString()
@@ -140,6 +145,10 @@ export class JobUpdateDTO {
   @IsOptional()
   @IsString()
   requirements: string;
+
+  @IsOptional()
+  @IsNumber()
+  quantity: number;
 
   @IsOptional()
   @IsString()
