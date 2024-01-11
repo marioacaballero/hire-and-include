@@ -1,0 +1,12 @@
+name: test action runner
+
+on:
+  push:
+    branches: [master, develop]
+
+jobs:
+  test_action_runner:
+    runs-on: [self-hosted, hire-runner]
+    steps:
+      - name: Checkout and set up repository
+        run: console.log("Checkout and set up repository")
