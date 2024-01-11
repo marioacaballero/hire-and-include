@@ -8,7 +8,7 @@ jobs:
   probando_runner:
     runs-on:
       - self-hosted
-      - hire-test-runner
+      - hire-runner
     steps:
       - uses: actions/setup-node@v3
         with:
