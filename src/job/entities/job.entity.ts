@@ -50,7 +50,7 @@ export class JobEntity extends BaseEntity {
   @Column()
   city: string; //localidad, estado, pais
 
-  @Column()
+  @Column({ default: 0 })
   quantity: number; //cantidad de vacantes
 
   @ManyToOne(() => SeniorityEntity, (seniority) => seniority.job)
