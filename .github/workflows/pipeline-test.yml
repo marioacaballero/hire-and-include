@@ -8,5 +8,10 @@ jobs:
   test_action_runner:
     runs-on: self-hosted
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - name: Checkout and set up repository
-        run: console.log("Checkout and set up repository")
+        run: npm install --no-audit --no-fund --no-optional
+      - name: Run Test
+        run: npm run test
