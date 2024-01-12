@@ -8,16 +8,16 @@ jobs:
   test_runner:
     runs-on: [self-hosted, test-run]
     steps:
-      # - uses: actions/checkout@v3
-      #   with:
-      #     fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: change directory
-        run: cd ../../hire-and-include
-      - name: pull
-        run: git pull origin develop
+      #- name: change directory
+       # run: cd ../../hire-and-include
+      #- name: pull
+       # run: git pull origin develop
       - name: install dependecies
         run: npm install --no-audit --no-fund --no-optional
       - name: Run build
