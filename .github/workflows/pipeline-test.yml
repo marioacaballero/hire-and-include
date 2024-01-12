@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          path: '/home/mario/Documents/projects/hire-and-include'
           fetch-depth: 0
       - name: Print workspace directory
         run: echo "Workspace directory is $GITHUB_WORKSPACE"
