@@ -69,10 +69,12 @@ export class ProfileService {
   //Buscar todas los usuarios de la db
   public async findAll(): Promise<ProfileEntity[]> {
     try {
-      const allprofiles = await this.profileRepository.find();
+      const allprofiles = await this.profileRepository.find({
+        where: { isActive: true },
+      });
       if (!allprofiles.length) {
         throw new ErrorManager({
-          type: 'NOT_FOUND',
+          type: 'OK',
           message: "We don't have profiles on database",
         });
       }
