@@ -42,10 +42,12 @@ export class ActivityAreaService {
   //Buscar todas las areas de la db
   public async findAll(): Promise<ActivityAreaEntity[]> {
     try {
-      const allactivities = await this.activityRepository.find();
+      const allactivities = await this.activityRepository.find({
+        where: { isActive: true },
+      });
       if (!allactivities.length) {
         throw new ErrorManager({
-          type: 'NOT_FOUND',
+          type: 'OK',
           message: "We don't have activities on database",
         });
       }
