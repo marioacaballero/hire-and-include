@@ -1,6 +1,7 @@
 import {
   IsBoolean,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
@@ -32,9 +33,25 @@ export class JobDTO {
   @MaxLength(100)
   salary: string;
 
+  @IsOptional()
+  @IsBoolean()
+  showSalary: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  receiveCvByEmail: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  showCompanyName: boolean;
+
   @IsNotEmpty()
   @IsString()
   requirements: string;
+
+  @IsOptional()
+  @IsNumber()
+  quantity: number;
 
   @IsNotEmpty()
   @IsString()
@@ -114,8 +131,24 @@ export class JobUpdateDTO {
   salary: string;
 
   @IsOptional()
+  @IsBoolean()
+  showSalary: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  receiveCvByEmail: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  showCompanyName: boolean;
+
+  @IsOptional()
   @IsString()
   requirements: string;
+
+  @IsOptional()
+  @IsNumber()
+  quantity: number;
 
   @IsOptional()
   @IsString()

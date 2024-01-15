@@ -18,3 +18,9 @@ export enum ROLES {
   ADMIN_USER = 'ADMIN_USER',
   BASIC = 'BASIC',
 }
+
+export enum ID_TYPE {
+  DNI = 'DNI',
+  CUIL = 'CUIL',
+  PASSPORT = 'PASSPORT',
+}

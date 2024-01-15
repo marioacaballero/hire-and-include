@@ -23,6 +23,15 @@ export class JobEntity extends BaseEntity {
   @Column()
   salary: string; //rango salarial
 
+  @Column({ default: false })
+  showSalary: boolean; //mostrar salario
+
+  @Column({ default: false })
+  receiveCvByEmail: boolean; //recibir cv por email
+
+  @Column({ default: false })
+  showCompanyName: boolean; //mostrar nombre de la empresa
+
   @Column('longtext')
   requirements: string; //requisitos
 
@@ -41,7 +50,7 @@ export class JobEntity extends BaseEntity {
   @Column()
   city: string; //localidad, estado, pais
 
-  @Column()
+  @Column({ default: 0 })
   quantity: number; //cantidad de vacantes
 
   @ManyToOne(() => SeniorityEntity, (seniority) => seniority.job)

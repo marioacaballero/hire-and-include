@@ -10,7 +10,7 @@ export class LanguageEntity extends BaseEntity {
   name: string; //Idioma
 
   @Column({ type: 'enum', enum: LEVELS })
-  knowledgeLevel: string; //Nivel de conocimiento
+  knowledgeLevel: LEVELS; //Nivel de conocimiento
 
   // Usuario
   @ManyToMany(() => UserEntity, (user) => user.languages)

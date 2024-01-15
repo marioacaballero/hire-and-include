@@ -53,6 +53,7 @@ export class PositionAreaService {
       const position = await this.positionAreaRepository
         .createQueryBuilder('position-area')
         .where({ id })
+        .leftJoinAndSelect('position-area.subPositionArea', 'subPositionArea')
         .getOne();
 
       if (!position) {

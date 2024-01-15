@@ -8,5 +8,6 @@ import { EarUsEntity } from './entities/ear-us.entity';
   imports: [TypeOrmModule.forFeature([EarUsEntity])],
   providers: [EarUsService],
   controllers: [EarUsController],
+  exports: [EarUsService, TypeOrmModule],
 })
 export class EarUsModule {}

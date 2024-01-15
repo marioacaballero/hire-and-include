@@ -1,13 +1,16 @@
 import {
+  IsBoolean,
+  IsDate,
   IsEmail,
   IsEnum,
   IsNotEmpty,
   IsOptional,
+  IsPhoneNumber,
   IsString,
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { ACCESLEVEL, PROFILETYPE } from '../../constants/enums/profile';
+import { ACCESLEVEL, ID_TYPE, ROLES } from '../../constants/enums/profile';
 import { EarUsEntity } from '../complements/ear-us/entities/ear-us.entity';
 import { CompanyEntity } from '../../company/entities/company.entity';
 import { UserEntity } from '../../user/entities/user.entity';
@@ -24,26 +27,53 @@ export class ProfileDTO {
   lastName: string;
 
   @IsNotEmpty()
+  @IsEnum(ID_TYPE)
+  IDnumberType: ID_TYPE;
+
+  @IsNotEmpty()
   @IsString()
+  IDnumber: string;
+
+  @IsNotEmpty()
+  @IsString()
+  cityAndCountry: string;
+
+  @IsNotEmpty()
+  @IsDate()
+  birthdate: Date;
+
+  @IsNotEmpty()
+  @IsPhoneNumber()
+  phone: string;
+
+  @IsOptional()
+  @IsString()
+  socialMedia: string;
+
+  @IsOptional()
+  @IsString()
+  about: string;
+
+  @IsNotEmpty()
   @IsEmail()
   @MaxLength(50)
   email: string;
 
   @IsNotEmpty()
   @IsString()
-  @MinLength(4)
-  @MaxLength(8)
+  @MinLength(5)
+  @MaxLength(20)
   password: string;
-
-  @IsNotEmpty()
-  @IsEnum(PROFILETYPE)
-  profileType: PROFILETYPE;
 
   @IsOptional()
   @IsEnum(ACCESLEVEL)
   accesLevel: ACCESLEVEL;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsEnum(ROLES)
+  rol: ROLES;
+
+  @IsOptional()
   earUs: EarUsEntity;
 
   @IsOptional()
@@ -51,6 +81,10 @@ export class ProfileDTO {
 
   @IsOptional()
   userProfile: UserEntity;
+
+  @IsOptional()
+  @IsBoolean()
+  news: boolean; //recibir novedades
 }
 
 export class ProfileUpdateDTO {
@@ -65,6 +99,34 @@ export class ProfileUpdateDTO {
   lastName: string;
 
   @IsOptional()
+  @IsEnum(ID_TYPE)
+  IDnumberType: ID_TYPE;
+
+  @IsOptional()
+  @IsString()
+  IDnumber: string;
+
+  @IsOptional()
+  @IsString()
+  cityAndCountry: string;
+
+  @IsOptional()
+  @IsDate()
+  birthdate: Date;
+
+  @IsOptional()
+  @IsString()
+  phone: string;
+
+  @IsOptional()
+  @IsString()
+  socialMedia: string;
+
+  @IsOptional()
+  @IsString()
+  about: string;
+
+  @IsOptional()
   @IsString()
   @IsEmail()
   @MaxLength(50)
@@ -77,12 +139,12 @@ export class ProfileUpdateDTO {
   password: string;
 
   @IsOptional()
-  @IsEnum(PROFILETYPE)
-  profileType: PROFILETYPE;
-
-  @IsOptional()
   @IsEnum(ACCESLEVEL)
   accesLevel: ACCESLEVEL;
+
+  @IsOptional()
+  @IsEnum(ROLES)
+  rol: ROLES;
 
   @IsOptional()
   earUs: EarUsEntity;
@@ -92,4 +154,8 @@ export class ProfileUpdateDTO {
 
   @IsOptional()
   userProfile: UserEntity;
+
+  @IsOptional()
+  @IsBoolean()
+  news: boolean; //recibir novedades
 }
