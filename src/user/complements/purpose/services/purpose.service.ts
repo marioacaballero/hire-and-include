@@ -43,7 +43,7 @@ export class PurposeService {
   }
 
   //Busca un proposito en particular
-  public async findOne(id: number): Promise<PurposeEntity> {
+  public async findOne(id: string): Promise<PurposeEntity> {
     try {
       const purpose = await this.purposeRepository
         .createQueryBuilder('purpose')
@@ -65,7 +65,7 @@ export class PurposeService {
 
   //Modificar un proposito en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: PurposeUpdateDTO,
   ): Promise<PurposeEntity> {
     try {
@@ -86,7 +86,7 @@ export class PurposeService {
   }
 
   //Borrar un proposito (soft)
-  public async deleteOne(id: number): Promise<PurposeEntity> {
+  public async deleteOne(id: string): Promise<PurposeEntity> {
     try {
       const purpose: UpdateResult = await this.purposeRepository.update(id, {
         isActive: false,

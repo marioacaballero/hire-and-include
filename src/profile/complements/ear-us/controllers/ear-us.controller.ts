@@ -26,16 +26,16 @@ export class EarUsController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.earusService.findOne(Number(id));
+    return await this.earusService.findOne(id);
   }
 
   @Put('id/:id')
   public async editOne(@Param('id') id: string, @Body() body: EarUsUpdateDTO) {
-    return await this.earusService.updateOne(Number(id), body);
+    return await this.earusService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.earusService.deleteOne(Number(id));
+    return await this.earusService.deleteOne(id);
   }
 }

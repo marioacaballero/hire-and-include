@@ -26,16 +26,16 @@ export class GenreController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.genreService.findOne(Number(id));
+    return await this.genreService.findOne(id);
   }
 
   @Put('id/:id')
   public async editOne(@Param('id') id: string, @Body() body: GenreUpdateDTO) {
-    return await this.genreService.updateOne(Number(id), body);
+    return await this.genreService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.genreService.deleteOne(Number(id));
+    return await this.genreService.deleteOne(id);
   }
 }

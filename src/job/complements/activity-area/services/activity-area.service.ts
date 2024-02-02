@@ -58,7 +58,7 @@ export class ActivityAreaService {
   }
 
   //Busca un area en particular
-  public async findOne(id: number): Promise<ActivityAreaEntity> {
+  public async findOne(id: string): Promise<ActivityAreaEntity> {
     try {
       const activity = await this.activityRepository
         .createQueryBuilder('activity')
@@ -80,7 +80,7 @@ export class ActivityAreaService {
 
   //Modificar un area en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: ActivityAreaUpdateDTO,
   ): Promise<ActivityAreaEntity> {
     try {
@@ -101,7 +101,7 @@ export class ActivityAreaService {
   }
 
   //Borrar un area (soft)
-  public async deleteOne(id: number): Promise<ActivityAreaEntity> {
+  public async deleteOne(id: string): Promise<ActivityAreaEntity> {
     try {
       const activity: UpdateResult = await this.activityRepository.update(id, {
         isActive: false,

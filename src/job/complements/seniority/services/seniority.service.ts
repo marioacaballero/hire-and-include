@@ -53,7 +53,7 @@ export class SeniorityService {
   }
 
   //Busca una jerarquia en particular
-  public async findOne(id: number): Promise<SeniorityEntity> {
+  public async findOne(id: string): Promise<SeniorityEntity> {
     try {
       const seniority = await this.seniorityRepository
         .createQueryBuilder('seniority')
@@ -75,7 +75,7 @@ export class SeniorityService {
 
   //Modificar una jerarquia en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: SeniorityUpdateDTO,
   ): Promise<SeniorityEntity> {
     try {
@@ -96,7 +96,7 @@ export class SeniorityService {
   }
 
   //Borrar una jerarquia (soft)
-  public async deleteOne(id: number): Promise<SeniorityEntity> {
+  public async deleteOne(id: string): Promise<SeniorityEntity> {
     try {
       const seniority: UpdateResult = await this.seniorityRepository.update(
         id,

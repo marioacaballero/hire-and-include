@@ -26,7 +26,7 @@ export class JobRelationController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.jobrelationService.findOne(Number(id));
+    return await this.jobrelationService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class JobRelationController {
     @Param('id') id: string,
     @Body() body: JobRelationUpdateDTO,
   ) {
-    return await this.jobrelationService.updateOne(Number(id), body);
+    return await this.jobrelationService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.jobrelationService.deleteOne(Number(id));
+    return await this.jobrelationService.deleteOne(id);
   }
 }

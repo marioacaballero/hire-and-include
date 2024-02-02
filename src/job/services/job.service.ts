@@ -62,7 +62,7 @@ export class JobService {
   }
 
   //Buscar una oferta de trabajo en particular
-  public async findOne(id: number): Promise<JobEntity> {
+  public async findOne(id: string): Promise<JobEntity> {
     try {
       const job = await this.jobRepository
         .createQueryBuilder('job')
@@ -91,7 +91,7 @@ export class JobService {
   }
 
   //Modificar una oferta de trabajo en particular
-  public async updateOne(id: number, body: JobUpdateDTO): Promise<JobEntity> {
+  public async updateOne(id: string, body: JobUpdateDTO): Promise<JobEntity> {
     try {
       const job: UpdateResult = await this.jobRepository.update(id, body);
       if (!job.affected) {
@@ -107,7 +107,7 @@ export class JobService {
   }
 
   //Borrar una oferta de trabajo (soft)
-  public async deleteOne(id: number): Promise<JobEntity> {
+  public async deleteOne(id: string): Promise<JobEntity> {
     try {
       const job: UpdateResult = await this.jobRepository.update(id, {
         isActive: false,

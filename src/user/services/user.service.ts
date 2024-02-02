@@ -70,7 +70,7 @@ export class UserService {
   }
 
   //Busca un usuario en particular
-  public async findOne(id: number): Promise<UserEntity> {
+  public async findOne(id: string): Promise<UserEntity> {
     try {
       const user = await this.userRepository
         .createQueryBuilder('user')
@@ -94,7 +94,7 @@ export class UserService {
   }
 
   //Modificar un usuario en particular
-  public async updateOne(id: number, body: UserUpdateDTO): Promise<UserEntity> {
+  public async updateOne(id: string, body: UserUpdateDTO): Promise<UserEntity> {
     try {
       const user: UpdateResult = await this.userRepository.update(id, body);
       if (!user.affected) {
@@ -110,7 +110,7 @@ export class UserService {
   }
 
   //Borrar un usuario (soft)
-  public async deleteOne(id: number): Promise<UserEntity> {
+  public async deleteOne(id: string): Promise<UserEntity> {
     try {
       const user: UpdateResult = await this.userRepository.update(id, {
         isActive: false,
@@ -128,7 +128,7 @@ export class UserService {
   }
 
   //Postularse a un trabajo en específico
-  public async applyToJob(body: JobUserDTO, jobId: number) {
+  public async applyToJob(body: JobUserDTO, jobId: string) {
     try {
       const job = await this.jobService.findOne(jobId);
       const user = await this.findOne(body.user.id);

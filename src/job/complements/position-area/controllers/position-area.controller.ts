@@ -29,7 +29,7 @@ export class PositionAreaController {
 
   @Get('id/:id')
   public async findOnePosition(@Param('id') id: string) {
-    return await this.positionAreaService.findOne(+id);
+    return await this.positionAreaService.findOne(id);
   }
 
   @Put('id/:id')
@@ -37,11 +37,11 @@ export class PositionAreaController {
     @Param('id') id: string,
     @Body() body: PositionAreaUpdateDTO,
   ) {
-    return await this.positionAreaService.updateOne(+id, body);
+    return await this.positionAreaService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOnePosition(@Param('id') id: string) {
-    return await this.positionAreaService.deleteOne(+id);
+    return await this.positionAreaService.deleteOne(id);
   }
 }

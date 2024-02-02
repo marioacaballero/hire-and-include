@@ -43,7 +43,7 @@ export class EarUsService {
   }
 
   //Busca un cuestionario en particular
-  public async findOne(id: number): Promise<EarUsEntity> {
+  public async findOne(id: string): Promise<EarUsEntity> {
     try {
       const ear = await this.earusRepository
         .createQueryBuilder('ear')
@@ -65,7 +65,7 @@ export class EarUsService {
 
   //Modificar un cuestionario en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: EarUsUpdateDTO,
   ): Promise<EarUsEntity> {
     try {
@@ -83,7 +83,7 @@ export class EarUsService {
   }
 
   //Borrar un cuestionario (soft)
-  public async deleteOne(id: number): Promise<EarUsEntity> {
+  public async deleteOne(id: string): Promise<EarUsEntity> {
     try {
       const ear: UpdateResult = await this.earusRepository.update(id, {
         isActive: false,

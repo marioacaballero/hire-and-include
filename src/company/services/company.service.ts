@@ -68,7 +68,7 @@ export class CompanyService {
   }
 
   //Busca una empresa en particular
-  public async findOne(id: number): Promise<CompanyEntity> {
+  public async findOne(id: string): Promise<CompanyEntity> {
     try {
       const company = await this.companyRepository
         .createQueryBuilder('company')
@@ -92,7 +92,7 @@ export class CompanyService {
 
   //Modificar una empresa en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: CompanyUpdateDTO,
   ): Promise<CompanyEntity> {
     try {
@@ -113,7 +113,7 @@ export class CompanyService {
   }
 
   //Borrar una empresa (soft)
-  public async deleteOne(id: number): Promise<CompanyEntity> {
+  public async deleteOne(id: string): Promise<CompanyEntity> {
     try {
       const company: UpdateResult = await this.companyRepository.update(id, {
         isActive: false,

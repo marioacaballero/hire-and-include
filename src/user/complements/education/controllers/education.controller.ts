@@ -26,7 +26,7 @@ export class EducationController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.educationService.findOne(Number(id));
+    return await this.educationService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class EducationController {
     @Param('id') id: string,
     @Body() body: EducationUpdateDTO,
   ) {
-    return await this.educationService.updateOne(Number(id), body);
+    return await this.educationService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.educationService.deleteOne(Number(id));
+    return await this.educationService.deleteOne(id);
   }
 }

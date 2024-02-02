@@ -43,7 +43,7 @@ export class DisabilityService {
   }
 
   //Busca una discapacidad en particular
-  public async findOne(id: number): Promise<DisabilityEntity> {
+  public async findOne(id: string): Promise<DisabilityEntity> {
     try {
       const disability = await this.disabilityRepository
         .createQueryBuilder('disability')
@@ -65,7 +65,7 @@ export class DisabilityService {
 
   //Modificar una discapacidad en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: DisabilityUpdateDTO,
   ): Promise<DisabilityEntity> {
     try {
@@ -86,7 +86,7 @@ export class DisabilityService {
   }
 
   //Borrar una discapacidad (soft)
-  public async deleteOne(id: number): Promise<DisabilityEntity> {
+  public async deleteOne(id: string): Promise<DisabilityEntity> {
     try {
       const disability: UpdateResult = await this.disabilityRepository.update(
         id,
