@@ -53,7 +53,7 @@ export class CultureService {
   }
 
   //Busca una cultura en particular
-  public async findOne(id: number): Promise<CultureEntity> {
+  public async findOne(id: string): Promise<CultureEntity> {
     try {
       const culture = await this.cultureRepository
         .createQueryBuilder('culture')
@@ -75,7 +75,7 @@ export class CultureService {
 
   //Modificar una cultura en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: CultureUpdateDTO,
   ): Promise<CultureEntity> {
     try {
@@ -96,7 +96,7 @@ export class CultureService {
   }
 
   //Borrar una cultura (soft)
-  public async deleteOne(id: number): Promise<CultureEntity> {
+  public async deleteOne(id: string): Promise<CultureEntity> {
     try {
       const culture: UpdateResult = await this.cultureRepository.update(id, {
         isActive: false,

@@ -48,7 +48,7 @@ export class KnowledgeLevelService {
   }
 
   //Busca un nivel de conocimiento en particular
-  public async findOne(id: number): Promise<KnowledgeLevelEntity> {
+  public async findOne(id: string): Promise<KnowledgeLevelEntity> {
     try {
       const knowledgelvl = await this.knowledgeRepository
         .createQueryBuilder('knowledge-level')
@@ -70,7 +70,7 @@ export class KnowledgeLevelService {
 
   //Modificar un nivel de conocimiento en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: KnowledgeLevelUpdateDTO,
   ): Promise<KnowledgeLevelEntity> {
     try {
@@ -91,7 +91,7 @@ export class KnowledgeLevelService {
   }
 
   //Borrar un nivel de conocimiento (soft)
-  public async deleteOne(id: number): Promise<KnowledgeLevelEntity> {
+  public async deleteOne(id: string): Promise<KnowledgeLevelEntity> {
     try {
       const knowledgelvl: UpdateResult = await this.knowledgeRepository.update(
         id,

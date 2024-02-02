@@ -48,7 +48,7 @@ export class PositionAreaService {
   }
 
   // find one positionArea
-  public async findOne(id: number): Promise<PositionAreaEntity> {
+  public async findOne(id: string): Promise<PositionAreaEntity> {
     try {
       const position = await this.positionAreaRepository
         .createQueryBuilder('position-area')
@@ -71,7 +71,7 @@ export class PositionAreaService {
 
   // update one positionArea
   public async updateOne(
-    id: number,
+    id: string,
     body: PositionAreaUpdateDTO,
   ): Promise<PositionAreaEntity> {
     try {
@@ -93,7 +93,7 @@ export class PositionAreaService {
   }
 
   // delete one positionArea
-  public async deleteOne(id: number) {
+  public async deleteOne(id: string) {
     try {
       const position: UpdateResult = await this.positionAreaRepository.update(
         id,

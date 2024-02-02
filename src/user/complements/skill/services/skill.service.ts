@@ -43,7 +43,7 @@ export class SkillService {
   }
 
   //Busca un conocimiento en particular
-  public async findOneSkill(id: number): Promise<SkillEntity> {
+  public async findOneSkill(id: string): Promise<SkillEntity> {
     try {
       const skill = await this.skillRepository
         .createQueryBuilder('skills')
@@ -65,7 +65,7 @@ export class SkillService {
 
   //Modificar un conocimiento en particular
   public async updateOneSkill(
-    id: number,
+    id: string,
     body: SkillUpdateDTO,
   ): Promise<SkillEntity> {
     try {
@@ -83,7 +83,7 @@ export class SkillService {
   }
 
   //Borrar un conocimiento (soft)
-  public async deleteOneSkill(id: number): Promise<SkillEntity> {
+  public async deleteOneSkill(id: string): Promise<SkillEntity> {
     try {
       const skill: UpdateResult = await this.skillRepository.update(id, {
         isActive: false,

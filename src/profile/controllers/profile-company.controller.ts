@@ -26,7 +26,7 @@ export class ProfileCompanyController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.profileCompanyService.findOne(Number(id));
+    return await this.profileCompanyService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class ProfileCompanyController {
     @Param('id') id: string,
     @Body() body: ProfileCompanyUpdateDTO,
   ) {
-    return await this.profileCompanyService.updateOne(Number(id), body);
+    return await this.profileCompanyService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.profileCompanyService.deleteOne(Number(id));
+    return await this.profileCompanyService.deleteOne(id);
   }
 }

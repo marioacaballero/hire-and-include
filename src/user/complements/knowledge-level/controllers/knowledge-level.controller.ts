@@ -29,7 +29,7 @@ export class KnowledgeLevelController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.knowledgeService.findOne(Number(id));
+    return await this.knowledgeService.findOne(id);
   }
 
   @Put('id/:id')
@@ -37,11 +37,11 @@ export class KnowledgeLevelController {
     @Param('id') id: string,
     @Body() body: KnowledgeLevelUpdateDTO,
   ) {
-    return await this.knowledgeService.updateOne(Number(id), body);
+    return await this.knowledgeService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.knowledgeService.deleteOne(Number(id));
+    return await this.knowledgeService.deleteOne(id);
   }
 }

@@ -26,7 +26,7 @@ export class PurposeController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.purposeService.findOne(Number(id));
+    return await this.purposeService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class PurposeController {
     @Param('id') id: string,
     @Body() body: PurposeUpdateDTO,
   ) {
-    return await this.purposeService.updateOne(Number(id), body);
+    return await this.purposeService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.purposeService.deleteOne(Number(id));
+    return await this.purposeService.deleteOne(id);
   }
 }

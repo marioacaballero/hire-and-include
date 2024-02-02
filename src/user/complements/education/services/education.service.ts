@@ -44,7 +44,7 @@ export class EducationService {
   }
 
   //Busca una formacion en particular
-  public async findOne(id: number): Promise<EducationEntity> {
+  public async findOne(id: string): Promise<EducationEntity> {
     try {
       const education = await this.educationRepository
         .createQueryBuilder('education')
@@ -66,7 +66,7 @@ export class EducationService {
 
   //Modificar una formacion en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: EducationUpdateDTO,
   ): Promise<EducationEntity> {
     try {
@@ -87,7 +87,7 @@ export class EducationService {
   }
 
   //Borrar una formacion (soft)
-  public async deleteOne(id: number): Promise<EducationEntity> {
+  public async deleteOne(id: string): Promise<EducationEntity> {
     try {
       const education: UpdateResult = await this.educationRepository.update(
         id,

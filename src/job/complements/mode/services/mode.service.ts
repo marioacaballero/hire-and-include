@@ -54,7 +54,7 @@ export class ModeService {
   }
 
   //Busca una modalidad en particular
-  public async findOne(id: number): Promise<ModeEntity> {
+  public async findOne(id: string): Promise<ModeEntity> {
     try {
       const mode = await this.jobmodeRepository
         .createQueryBuilder('mode')
@@ -75,7 +75,7 @@ export class ModeService {
   }
 
   //Modificar una modalidad en particular
-  public async updateOne(id: number, body: ModeUpdateDTO): Promise<ModeEntity> {
+  public async updateOne(id: string, body: ModeUpdateDTO): Promise<ModeEntity> {
     try {
       const mode: UpdateResult = await this.jobmodeRepository.update(id, body);
       if (!mode.affected) {
@@ -91,7 +91,7 @@ export class ModeService {
   }
 
   //Borrar una modalidad (soft)
-  public async deleteOne(id: number): Promise<ModeEntity> {
+  public async deleteOne(id: string): Promise<ModeEntity> {
     try {
       const mode: UpdateResult = await this.jobmodeRepository.update(id, {
         isActive: false,

@@ -43,7 +43,7 @@ export class GenreService {
   }
 
   //Busca un genero en particular
-  public async findOne(id: number): Promise<GenreEntity> {
+  public async findOne(id: string): Promise<GenreEntity> {
     try {
       const genre = await this.genreRepository
         .createQueryBuilder('genres')
@@ -65,7 +65,7 @@ export class GenreService {
 
   //Modificar un genero en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: GenreUpdateDTO,
   ): Promise<GenreEntity> {
     try {
@@ -83,7 +83,7 @@ export class GenreService {
   }
 
   //Borrar un genero (soft)
-  public async deleteOne(id: number): Promise<GenreEntity> {
+  public async deleteOne(id: string): Promise<GenreEntity> {
     try {
       const genre: UpdateResult = await this.genreRepository.update(id, {
         isActive: false,

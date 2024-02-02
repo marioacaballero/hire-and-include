@@ -46,7 +46,7 @@ export class JobExperienceService {
   }
 
   //Busca un experiencia en particular
-  public async findOne(id: number): Promise<JobExperienceEntity> {
+  public async findOne(id: string): Promise<JobExperienceEntity> {
     try {
       const jobexp = await this.jobexperienceRepository
         .createQueryBuilder('job-experience')
@@ -68,7 +68,7 @@ export class JobExperienceService {
 
   //Modificar un experiencia en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: JobExperienceUpdateDTO,
   ): Promise<JobExperienceEntity> {
     try {
@@ -89,7 +89,7 @@ export class JobExperienceService {
   }
 
   //Borrar un experiencia (soft)
-  public async deleteOne(id: number): Promise<JobExperienceEntity> {
+  public async deleteOne(id: string): Promise<JobExperienceEntity> {
     try {
       const jobexp: UpdateResult = await this.jobexperienceRepository.update(
         id,

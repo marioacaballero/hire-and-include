@@ -26,7 +26,7 @@ export class DisabilityController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.disabilityService.findOne(Number(id));
+    return await this.disabilityService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class DisabilityController {
     @Param('id') id: string,
     @Body() body: DisabilityUpdateDTO,
   ) {
-    return await this.disabilityService.updateOne(Number(id), body);
+    return await this.disabilityService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.disabilityService.deleteOne(Number(id));
+    return await this.disabilityService.deleteOne(id);
   }
 }

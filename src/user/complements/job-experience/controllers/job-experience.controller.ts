@@ -29,7 +29,7 @@ export class JobExperienceController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.jobexpService.findOne(Number(id));
+    return await this.jobexpService.findOne(id);
   }
 
   @Put('id/:id')
@@ -37,11 +37,11 @@ export class JobExperienceController {
     @Param('id') id: string,
     @Body() body: JobExperienceUpdateDTO,
   ) {
-    return await this.jobexpService.updateOne(Number(id), body);
+    return await this.jobexpService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.jobexpService.deleteOne(Number(id));
+    return await this.jobexpService.deleteOne(id);
   }
 }

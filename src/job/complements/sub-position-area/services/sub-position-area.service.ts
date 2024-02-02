@@ -53,7 +53,7 @@ export class SubPositionAreaService {
   }
 
   // find one subPositionArea
-  public async findOne(id: number): Promise<SubPositionAreaEntity> {
+  public async findOne(id: string): Promise<SubPositionAreaEntity> {
     try {
       const subPosition = await this.subPositionAreaRepository
         .createQueryBuilder('sub-position-area')
@@ -75,7 +75,7 @@ export class SubPositionAreaService {
 
   // update one subPositionArea
   public async updateOne(
-    id: number,
+    id: string,
     body: SubPositionAreaUpdateDTO,
   ): Promise<SubPositionAreaEntity> {
     try {
@@ -95,7 +95,7 @@ export class SubPositionAreaService {
   }
 
   // delete one subPositionArea
-  public async deleteOne(id: number) {
+  public async deleteOne(id: string) {
     try {
       const subPosition: UpdateResult =
         await this.subPositionAreaRepository.update(id, { isActive: false });

@@ -53,7 +53,7 @@ export class JobRelationService {
   }
 
   //Busca una contratacion en particular
-  public async findOne(id: number): Promise<JobRelationEntity> {
+  public async findOne(id: string): Promise<JobRelationEntity> {
     try {
       const jobrelation = await this.jobrelationRepository
         .createQueryBuilder('jobrelation')
@@ -75,7 +75,7 @@ export class JobRelationService {
 
   //Modificar una contratacion en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: JobRelationUpdateDTO,
   ): Promise<JobRelationEntity> {
     try {
@@ -96,7 +96,7 @@ export class JobRelationService {
   }
 
   //Borrar una contratacion (soft)
-  public async deleteOne(id: number): Promise<JobRelationEntity> {
+  public async deleteOne(id: string): Promise<JobRelationEntity> {
     try {
       const jobrelation: UpdateResult = await this.jobrelationRepository.update(
         id,

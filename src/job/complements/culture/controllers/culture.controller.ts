@@ -26,7 +26,7 @@ export class CultureController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.cultureService.findOne(Number(id));
+    return await this.cultureService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class CultureController {
     @Param('id') id: string,
     @Body() body: CultureUpdateDTO,
   ) {
-    return await this.cultureService.updateOne(Number(id), body);
+    return await this.cultureService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.cultureService.deleteOne(Number(id));
+    return await this.cultureService.deleteOne(id);
   }
 }

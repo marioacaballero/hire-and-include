@@ -26,7 +26,7 @@ export class LanguageController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.languageService.findOne(Number(id));
+    return await this.languageService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class LanguageController {
     @Param('id') id: string,
     @Body() body: LanguageUpdateDTO,
   ) {
-    return await this.languageService.updateOne(Number(id), body);
+    return await this.languageService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.languageService.deleteOne(Number(id));
+    return await this.languageService.deleteOne(id);
   }
 }

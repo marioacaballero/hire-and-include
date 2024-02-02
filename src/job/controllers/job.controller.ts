@@ -26,16 +26,16 @@ export class JobController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.jobService.findOne(Number(id));
+    return await this.jobService.findOne(id);
   }
 
   @Put('id/:id')
   public async editOne(@Param('id') id: string, @Body() body: JobUpdateDTO) {
-    return await this.jobService.updateOne(Number(id), body);
+    return await this.jobService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.jobService.deleteOne(Number(id));
+    return await this.jobService.deleteOne(id);
   }
 }
