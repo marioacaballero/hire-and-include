@@ -27,21 +27,21 @@ export class UserController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.userService.findOne(Number(id));
+    return await this.userService.findOne(id);
   }
 
   @Put('id/:id')
   public async editOne(@Param('id') id: string, @Body() body: UserUpdateDTO) {
-    return await this.userService.updateOne(Number(id), body);
+    return await this.userService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.userService.deleteOne(Number(id));
+    return await this.userService.deleteOne(id);
   }
 
   @Post('add-to-job/:jobId')
   public async addToJob(@Body() body: JobUserDTO, @Param('jobId') job: string) {
-    return await this.userService.applyToJob(body, Number(job));
+    return await this.userService.applyToJob(body, job);
   }
 }

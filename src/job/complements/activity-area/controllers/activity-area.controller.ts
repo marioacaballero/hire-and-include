@@ -29,7 +29,7 @@ export class ActivityAreaController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.activityService.findOne(Number(id));
+    return await this.activityService.findOne(id);
   }
 
   @Put('id/:id')
@@ -37,11 +37,11 @@ export class ActivityAreaController {
     @Param('id') id: string,
     @Body() body: ActivityAreaUpdateDTO,
   ) {
-    return await this.activityService.updateOne(Number(id), body);
+    return await this.activityService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.activityService.deleteOne(Number(id));
+    return await this.activityService.deleteOne(id);
   }
 }

@@ -26,16 +26,16 @@ export class ChargeController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.chargeService.findOne(Number(id));
+    return await this.chargeService.findOne(id);
   }
 
   @Put('id/:id')
   public async editOne(@Param('id') id: string, @Body() body: ChargeUpdateDTO) {
-    return await this.chargeService.updateOne(Number(id), body);
+    return await this.chargeService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.chargeService.deleteOne(Number(id));
+    return await this.chargeService.deleteOne(id);
   }
 }

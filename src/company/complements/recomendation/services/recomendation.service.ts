@@ -55,7 +55,7 @@ export class RecomendationService {
     }
   }
 
-  public async findOne(id: number): Promise<RecomendationEntity> {
+  public async findOne(id: string): Promise<RecomendationEntity> {
     try {
       const recomendation = await this.recomendationRepository
         .createQueryBuilder('recomendation')
@@ -76,7 +76,7 @@ export class RecomendationService {
   }
 
   public async updateOne(
-    id: number,
+    id: string,
     body: RecomendationUpdateDTO,
   ): Promise<RecomendationEntity> {
     try {
@@ -96,7 +96,7 @@ export class RecomendationService {
     }
   }
 
-  public async deleteOne(id: number): Promise<RecomendationEntity> {
+  public async deleteOne(id: string): Promise<RecomendationEntity> {
     try {
       const recomendation: UpdateResult =
         await this.recomendationRepository.update(id, { isActive: false });

@@ -26,16 +26,16 @@ export class SkillController {
 
   @Get('id/:id')
   public async getOneById(@Param(':id') id: string) {
-    return await this.skillService.findOneSkill(Number(id));
+    return await this.skillService.findOneSkill(id);
   }
 
   @Put('id/:id')
   public async editOne(@Param('id') id: string, @Body() body: SkillUpdateDTO) {
-    return await this.skillService.updateOneSkill(Number(id), body);
+    return await this.skillService.updateOneSkill(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.skillService.deleteOneSkill(Number(id));
+    return await this.skillService.deleteOneSkill(id);
   }
 }

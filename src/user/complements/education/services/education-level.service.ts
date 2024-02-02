@@ -48,7 +48,7 @@ export class EducationLevelService {
   }
 
   //Busca un nivel de estudio en particular
-  public async findOne(id: number): Promise<EducationLevelEntity> {
+  public async findOne(id: string): Promise<EducationLevelEntity> {
     try {
       const educationlvl = await this.educationLevelRepository
         .createQueryBuilder('educationlvl')
@@ -70,7 +70,7 @@ export class EducationLevelService {
 
   //Modificar un nivel de estudio en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: EducationLevelUpdateDTO,
   ): Promise<EducationLevelEntity> {
     try {
@@ -89,7 +89,7 @@ export class EducationLevelService {
   }
 
   //Borrar un nivel de estudio (soft)
-  public async deleteOne(id: number): Promise<EducationLevelEntity> {
+  public async deleteOne(id: string): Promise<EducationLevelEntity> {
     try {
       const educationlvl: UpdateResult =
         await this.educationLevelRepository.update(id, {

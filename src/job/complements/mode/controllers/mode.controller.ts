@@ -26,16 +26,16 @@ export class ModeController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.modeService.findOne(Number(id));
+    return await this.modeService.findOne(id);
   }
 
   @Put('id/:id')
   public async editOne(@Param('id') id: string, @Body() body: ModeUpdateDTO) {
-    return await this.modeService.updateOne(Number(id), body);
+    return await this.modeService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.modeService.deleteOne(Number(id));
+    return await this.modeService.deleteOne(id);
   }
 }

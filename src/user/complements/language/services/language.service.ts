@@ -43,7 +43,7 @@ export class LanguageService {
   }
 
   //Busca un idioma en particular
-  public async findOne(id: number): Promise<LanguageEntity> {
+  public async findOne(id: string): Promise<LanguageEntity> {
     try {
       const language = await this.languageRepository
         .createQueryBuilder('language')
@@ -65,7 +65,7 @@ export class LanguageService {
 
   //Modificar un idioma en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: LanguageUpdateDTO,
   ): Promise<LanguageEntity> {
     try {
@@ -86,7 +86,7 @@ export class LanguageService {
   }
 
   //Borrar un idioma (soft)
-  public async deleteOne(id: number): Promise<LanguageEntity> {
+  public async deleteOne(id: string): Promise<LanguageEntity> {
     try {
       const language: UpdateResult = await this.languageRepository.update(id, {
         isActive: false,

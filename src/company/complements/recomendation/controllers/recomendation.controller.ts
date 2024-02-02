@@ -29,7 +29,7 @@ export class RecomendationController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return this.recomendationService.findOne(+id);
+    return this.recomendationService.findOne(id);
   }
 
   @Put('id/:id')
@@ -37,11 +37,11 @@ export class RecomendationController {
     @Param('id') id: string,
     @Body() body: RecomendationUpdateDTO,
   ) {
-    return this.recomendationService.updateOne(+id, body);
+    return this.recomendationService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async removeOne(@Param('id') id: string) {
-    return this.recomendationService.deleteOne(+id);
+    return this.recomendationService.deleteOne(id);
   }
 }

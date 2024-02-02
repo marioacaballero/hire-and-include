@@ -31,7 +31,7 @@ export class SubPositionAreaController {
 
   @Get('id/:id')
   public async getOneSub(@Param('id') id: string) {
-    return await this.subPositionAreaService.findOne(+id);
+    return await this.subPositionAreaService.findOne(id);
   }
 
   @Put('id/:id')
@@ -39,11 +39,11 @@ export class SubPositionAreaController {
     @Param('id') id: string,
     @Body() body: SubPositionAreaUpdateDTO,
   ) {
-    return await this.subPositionAreaService.updateOne(+id, body);
+    return await this.subPositionAreaService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOneSub(@Param('id') id: string) {
-    return await this.subPositionAreaService.deleteOne(+id);
+    return await this.subPositionAreaService.deleteOne(id);
   }
 }

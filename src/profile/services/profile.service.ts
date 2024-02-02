@@ -85,7 +85,7 @@ export class ProfileService {
   }
 
   //Busca un usuario en particular
-  public async findOne(id: number): Promise<ProfileEntity> {
+  public async findOne(id: string): Promise<ProfileEntity> {
     try {
       const profile = await this.profileRepository
         .createQueryBuilder('profile')
@@ -109,7 +109,7 @@ export class ProfileService {
 
   //Modificar un usuario en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: ProfileUpdateDTO,
   ): Promise<ProfileEntity> {
     try {
@@ -130,7 +130,7 @@ export class ProfileService {
   }
 
   //Borrar un usuario (soft)
-  public async deleteOne(id: number): Promise<ProfileEntity> {
+  public async deleteOne(id: string): Promise<ProfileEntity> {
     try {
       const profile: UpdateResult = await this.profileRepository.update(id, {
         isActive: false,

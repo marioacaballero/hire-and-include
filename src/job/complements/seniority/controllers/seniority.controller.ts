@@ -26,7 +26,7 @@ export class SeniorityController {
 
   @Get('id/:id')
   public async getOneById(@Param('id') id: string) {
-    return await this.seniorityService.findOne(Number(id));
+    return await this.seniorityService.findOne(id);
   }
 
   @Put('id/:id')
@@ -34,11 +34,11 @@ export class SeniorityController {
     @Param('id') id: string,
     @Body() body: SeniorityUpdateDTO,
   ) {
-    return await this.seniorityService.updateOne(Number(id), body);
+    return await this.seniorityService.updateOne(id, body);
   }
 
   @Delete('id/:id')
   public async deleteOne(@Param('id') id: string) {
-    return await this.seniorityService.deleteOne(Number(id));
+    return await this.seniorityService.deleteOne(id);
   }
 }

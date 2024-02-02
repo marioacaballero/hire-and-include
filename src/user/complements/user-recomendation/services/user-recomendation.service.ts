@@ -49,7 +49,7 @@ export class UserRecomendationService {
     }
   }
 
-  public async findOne(id: number): Promise<UserRecomendationEntity> {
+  public async findOne(id: string): Promise<UserRecomendationEntity> {
     try {
       const userRecomendation = await this.userRecomendationRepository
         .createQueryBuilder('userRecomendation')
@@ -69,7 +69,7 @@ export class UserRecomendationService {
   }
 
   public async updateOne(
-    id: number,
+    id: string,
     body: UserRecomendationUpdateDTO,
   ): Promise<UserRecomendationEntity> {
     try {
@@ -88,7 +88,7 @@ export class UserRecomendationService {
     }
   }
 
-  public async deleteOne(id: number): Promise<UserRecomendationEntity> {
+  public async deleteOne(id: string): Promise<UserRecomendationEntity> {
     try {
       const userRecomendation: UpdateResult =
         await this.userRecomendationRepository.update(id, {

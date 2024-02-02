@@ -53,7 +53,7 @@ export class ChargeService {
   }
 
   //Busca un horario en particular
-  public async findOne(id: number): Promise<ChargeEntity> {
+  public async findOne(id: string): Promise<ChargeEntity> {
     try {
       const charge = await this.chargeRepository
         .createQueryBuilder('charge')
@@ -75,7 +75,7 @@ export class ChargeService {
 
   //Modificar un horario en particular
   public async updateOne(
-    id: number,
+    id: string,
     body: ChargeUpdateDTO,
   ): Promise<ChargeEntity> {
     try {
@@ -93,7 +93,7 @@ export class ChargeService {
   }
 
   //Borrar un horario (soft)
-  public async deleteOne(id: number): Promise<ChargeEntity> {
+  public async deleteOne(id: string): Promise<ChargeEntity> {
     try {
       const charge: UpdateResult = await this.chargeRepository.update(id, {
         isActive: false,
