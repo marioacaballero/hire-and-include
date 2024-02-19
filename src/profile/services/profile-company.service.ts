@@ -69,6 +69,26 @@ export class ProfileCompanyService {
     }
   }
 
+  public async findOneByCuil(IDnumber: string): Promise<ProfileCompanyEntity> {
+    try {
+      const profile: ProfileCompanyEntity = await this.profileCompanyRepository
+        .createQueryBuilder('profile-company')
+        .where({ IDnumber })
+        .getOne();
+
+      if (!profile) {
+        throw new ErrorManager({
+          type: 'NOT_FOUND',
+          message: `The company profile not found with IDnumber: ${IDnumber}`,
+        });
+      }
+
+      return profile;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
   //Buscar todas los usuarios de la db
   public async findAll(): Promise<ProfileCompanyEntity[]> {
     try {
