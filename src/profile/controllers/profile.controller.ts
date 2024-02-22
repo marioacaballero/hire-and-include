@@ -19,9 +19,14 @@ export class ProfileController {
     return await this.profileService.findAll();
   }
 
-  @Get('search')
+  @Get('search-email')
   public async getByEmail(@Query('email') email: string) {
     return await this.profileService.findOneByEmail(email);
+  }
+
+  @Get('search-cuil')
+  public async getByCuil(@Query('cuil') cuil: string) {
+    return await this.profileService.findOneByCuil(cuil);
   }
 
   @Get('id/:id')
