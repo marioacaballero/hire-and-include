@@ -19,9 +19,14 @@ export class ProfileCompanyController {
     return await this.profileCompanyService.findAll();
   }
 
-  @Get('search')
+  @Get('search-email')
   public async getByEmail(@Query('email') email: string) {
     return await this.profileCompanyService.findOneByEmail(email);
+  }
+
+  @Get('search-cuil')
+  public async getByCuil(@Query('cuil') cuil: string) {
+    return await this.profileCompanyService.findOneByCuil(cuil);
   }
 
   @Get('id/:id')

@@ -124,10 +124,6 @@ export class ProfileUpdateDTO {
 
   @IsOptional()
   @IsString()
-  about: string;
-
-  @IsOptional()
-  @IsString()
   @IsEmail()
   @MaxLength(50)
   email: string;

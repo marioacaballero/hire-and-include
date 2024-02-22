@@ -33,9 +33,6 @@ export class ProfileEntity extends BaseEntity {
   @Column({ default: '' })
   socialMedia: string; //RRSS
 
-  @Column({ default: '', length: 1000 })
-  about: string; //sobre mi
-
   @Column({ unique: true })
   email: string; //correo*
 
